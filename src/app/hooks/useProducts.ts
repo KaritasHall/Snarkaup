@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
+// This is the type of the data that we will get from the API
 interface Product {
   id: number;
   title: string;
@@ -18,6 +19,7 @@ interface UseProductsProps {
   category?: string;
 }
 
+// A hook that will fetch the products from the API
 export function useProducts({ id, category }: UseProductsProps) {
   const {
     data: products,
