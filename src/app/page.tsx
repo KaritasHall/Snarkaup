@@ -36,9 +36,12 @@ export default function Home() {
         </div>
       </SectionContainer>
       <SectionContainer>
-        <div className="bg-purple-300 p-20">
-          <h2>Products</h2>
-          <p>wow</p>
+        <div className="flex gap-2 p-20">
+          <p className="italic">color test</p>
+          <div className="bg-seabreeze h-60 w-60"></div>
+          <div className="bg-softSeabreeze h-60 w-60"></div>
+          <div className="bg-tangerine h-60 w-60"></div>
+          <div className="bg-softTangerine h-60 w-60"></div>
         </div>
       </SectionContainer>
     </>
