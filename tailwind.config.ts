@@ -8,6 +8,30 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        // Base colors
+        seabreeze: "#4a869e",
+        softSeabreeze: "#6aa5c7",
+        tangerine: "#f26b4e",
+        softTangerine: "#f49d8a",
+        lightGray: "#F4F5F9",
+
+        // Text colors
+        black: "#000000",
+        white: "#ffffff",
+        textLight: "#585866",
+        textLighter: "#81818F",
+
+        // Icon colors
+        IconDefault: "#585866",
+        IconHovered: "#25252E",
+        IconPressed: "#44474A",
+
+        // Status colors
+        success: "#48C546",
+        danger: "#EB5454",
+      },
+
       spacing: {
         0: "0px",
         2: "2px",

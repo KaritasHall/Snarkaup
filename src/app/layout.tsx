@@ -4,8 +4,13 @@ import { Inter } from "next/font/google";
 import { Context } from "./context";
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
+import { Poppins } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+const poppins = Poppins({
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
+  subsets: ["latin-ext"],
+});
 
 export const metadata: Metadata = {
   title: "Snarkaup",
@@ -20,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Context>
-        <body className={inter.className}>
+        <body className={poppins.className}>
           <Navbar />
           {children}
           <Footer />
