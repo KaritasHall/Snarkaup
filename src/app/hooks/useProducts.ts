@@ -21,7 +21,7 @@ export interface Product {
 }
 
 interface UseProductsProps {
-  id?: number;
+  id?: number | String;
   category?: string;
 }
 
@@ -40,6 +40,7 @@ export function useProducts({ id, category }: UseProductsProps) {
     },
   });
 
+  // Fetch the categories
   const {
     data: categories,
     error: categoriesError,
@@ -57,7 +58,7 @@ export function useProducts({ id, category }: UseProductsProps) {
       return productCategories;
     },
   });
-
+  // Fetch the product by id
   const {
     data: product,
     error: productError,
@@ -69,9 +70,10 @@ export function useProducts({ id, category }: UseProductsProps) {
       const data = await res.json();
       return data as Product;
     },
-    enabled: id != null && typeof id === "number",
+    enabled: id != null,
   });
 
+  // Fetch the products by category
   const {
     data: productsByCategory,
     error: productsByCategoryError,

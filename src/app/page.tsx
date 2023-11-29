@@ -8,9 +8,7 @@ import ProductCard from "./components/product-card";
 export default function Home() {
   const { loading, error, data } = useQuery(GET_FRONT_PAGE);
 
-  const { products, product, categories, productsByCategory } = useProducts({
-    id: 1,
-  });
+  const { products, product, categories, productsByCategory } = useProducts({});
 
   return (
     <>
