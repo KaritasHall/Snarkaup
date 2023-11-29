@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
 // This is the type of the data that we will get from the API
-interface Product {
+export interface Product {
   id: number;
   title: string;
   price: number;
@@ -69,7 +69,7 @@ export function useProducts({ id, category }: UseProductsProps) {
     queryKey: ["productsByCategory", category],
     queryFn: async () => {
       const res = await fetch(
-        `https://fakestoreapi.com/products/category/${category}`
+        `https://fakestoreapi.com/products/category/${category}`,
       );
       const data = await res.json();
       return data as Product[];
