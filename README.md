@@ -8,7 +8,7 @@ This e-commerce website is a hobby project :credit_card:
 - Tailwind
 - DatoCMS
 
-[API](https://fakestoreapi.com/)
+Using this free [API](https://fakestoreapi.com/)
 
 I used this [design](<https://www.figma.com/file/suje7k21VJCYhFO84xEAU3/Free-E-commerce-Design-System-(Community)?type=design&node-id=650-90828&mode=design&t=GAtCxJ8ev5Kucwln-0>) as a guideline on overall structure and layout.
 
