@@ -82,5 +82,8 @@ export function useProducts({ id, category }: UseProductsProps) {
     products,
     categories,
     productsByCategory,
+    categoryTitle: category
+      ? category.charAt(0).toUpperCase() + category.slice(1)
+      : "",
   };
 }
