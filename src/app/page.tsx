@@ -11,7 +11,6 @@ export default function Home() {
   const { products, product, categories, productsByCategory } = useProducts({
     id: 1,
   });
-  console.log("product", product);
 
   return (
     <>

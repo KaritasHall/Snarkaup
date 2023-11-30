@@ -10,7 +10,7 @@ interface CategorySectionProps {
 function CategorySection({ categoryTitle, products }: CategorySectionProps) {
   return (
     <SectionContainer>
-      <h2>{categoryTitle}</h2>
+      <h2 className="capitalize">{categoryTitle}</h2>
       <div className="grid grid-cols-1 gap-64 lg:grid-cols-4">
         {products?.map((product) => (
           <ProductCard key={product?.id} product={product} />

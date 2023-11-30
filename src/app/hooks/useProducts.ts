@@ -1,5 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 
+export interface Category {
+  id: number;
+  title: string;
+  slug: string;
+}
+
 // This is the type of the data that we will get from the API
 export interface Product {
   id: number;
@@ -43,7 +49,12 @@ export function useProducts({ id, category }: UseProductsProps) {
     queryFn: async () => {
       const res = await fetch("https://fakestoreapi.com/products/categories");
       const data = await res.json();
-      return data as string[];
+      const productCategories = data.map((category: string, index: number) => ({
+        id: index,
+        title: category,
+        slug: encodeURI(category),
+      }));
+      return productCategories;
     },
   });
 
@@ -82,8 +93,5 @@ export function useProducts({ id, category }: UseProductsProps) {
     products,
     categories,
     productsByCategory,
-    categoryTitle: category
-      ? category.charAt(0).toUpperCase() + category.slice(1)
-      : "",
   };
 }
