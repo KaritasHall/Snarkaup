@@ -1,0 +1,77 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+}
+
+model Product {
+  id              Int              @id @default(autoincrement())
+  productNumber   String           @unique
+  sku             String           @unique
+  slug            String           @unique
+  title           String
+  description     String
+  variants        ProductVariant[]
+  content         ProductContent[]
+  productSpec     ProductSpec[]
+  category        Category         @relation(fields: [categoryId], references: [id])
+  categoryId      Int
+  discountGroup   DiscountGroup?   @relation(fields: [discountGroupId], references: [id])
+  discountGroupId Int?
+}
+
+model ProductVariant {
+  id        Int     @id @default(autoincrement())
+  variantId String
+  title     String
+  price     Float
+  productId Int
+  product   Product @relation(fields: [productId], references: [id])
+}
+
+model ProductContent {
+  id        Int         @id @default(autoincrement())
+  url       String
+  listUrl   String
+  type      ContentType
+  mimetype  String
+  productId Int
+  product   Product     @relation(fields: [productId], references: [id])
+}
+
+model ProductSpec {
+  id        Int     @id @default(autoincrement())
+  key       String
+  value     String
+  productId Int
+  product   Product @relation(fields: [productId], references: [id])
+}
+
+model Category {
+  id              Int            @id @default(autoincrement())
+  title           String
+  parentId        Int?
+  parent          Category?      @relation("SubCategory", fields: [parentId], references: [id])
+  children        Category[]     @relation("SubCategory")
+  products        Product[]
+  discountGroup   DiscountGroup? @relation(fields: [discountGroupId], references: [id])
+  discountGroupId Int?
+}
+
+enum ContentType {
+  IMAGE
+  VIDEO
+}
+
+model DiscountGroup {
+  id          Int        @id @default(autoincrement())
+  title       String
+  description String
+  discount    Float
+  products    Product[]
+  categories  Category[]
+}
