@@ -8,7 +8,7 @@ export const queryClient = new QueryClient();
 
 // This is a wrapper component that provides the React Query client to its children
 // and the Apollo Client to its children's children.
-export const Context = ({ children }: { children: React.ReactNode }) => {
+export const Providers = ({ children }: { children: React.ReactNode }) => {
   return (
     <QueryClientProvider client={queryClient}>
       <ApolloProvider client={DatoClient}>{children}</ApolloProvider>
