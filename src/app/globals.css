@@ -18,13 +18,6 @@ body {
   grid-template-rows: auto 1fr auto;
 }
 
-*:where(
-    :not(html, iframe, canvas, img, svg, video, audio):not(svg *, symbol *)
-  ) {
-  all: unset;
-  display: revert;
-}
-
 /* Preferred box-sizing value */
 *,
 *::before,
