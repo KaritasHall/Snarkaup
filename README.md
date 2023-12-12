@@ -8,8 +8,4 @@ This e-commerce website is a hobby project :credit_card:
 - Tailwind
 - DatoCMS
 
-Using this free [API](https://fakestoreapi.com/)
-
-I used this [design](<https://www.figma.com/file/suje7k21VJCYhFO84xEAU3/Free-E-commerce-Design-System-(Community)?type=design&node-id=650-90828&mode=design&t=GAtCxJ8ev5Kucwln-0>) as a guideline on overall structure and layout.
-
-I was inspired by [this design](https://dribbble.com/shots/22688248-Ecommerce-Website-Design). I'm using the same color palette and font here.
+[Design](https://www.figma.com/file/S2qa5zFljHDDKLOdP50Dpo/3legant-E-Commerce-UI-Design-Template-(Community)?node-id=3%3A674&mode=dev) 
