@@ -15,28 +15,6 @@ export default function Home() {
   return (
     <>
       <SectionContainer>
-        <div className="p-20">
-          <Button
-            label="Hello"
-            shape="square"
-            stretch
-            onClick={() => console.log("Button clicked!")}
-          />
-        </div>
-        <div className="p-20">
-          <Button
-            label="Wishlist"
-            icon={HeartIcon}
-            shape="soft"
-            color="white"
-          />
-        </div>
-        <div className="p-20">
-          <Button label="Hello" shape="soft" color="blue" />
-        </div>
-        <div className="p-20">
-          <Button label="Hello" shape="square" color="green" />
-        </div>
         <div className="grid grid-cols-1 gap-[64px] lg:grid-cols-4">
           {products?.map((product) => (
             <ProductCard key={product?.id} product={product} />
