@@ -45,10 +45,10 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         onClick={onClick}
-        className={`flex items-center justify-center gap-4 px-56 py-12 text-sm outline outline-1 outline-inherit lg:gap-8 lg:text-base 
+        className={`flex items-center justify-center gap-4 px-56 py-12 text-sm outline 
+        outline-1 outline-inherit lg:gap-8 lg:text-base 
         ${buttonShapeClass[shape]} 
         ${buttonColorClass[color]}
-       
         ${stretch ? "w-full py-8" : ""}
         ${className} 
         `}
