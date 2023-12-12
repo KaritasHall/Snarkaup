@@ -12,7 +12,7 @@ type ButtonProps = {
   onClick?: () => void;
 };
 
-// Tailwind classes for ButtonProps ty  pes (shape/color)
+// Tailwind classes for ButtonProps types (shape/color)
 const buttonShapeClass = {
   soft: "rounded-full",
   square: "rounded-lg",
