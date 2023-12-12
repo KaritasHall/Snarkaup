@@ -9,23 +9,18 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Base colors
-        seabreeze: "#4a869e",
-        softSeabreeze: "#6aa5c7",
-        tangerine: "#f26b4e",
-        softTangerine: "#f49d8a",
-        lightGray: "#F5F5F5",
-
-        // Text colors
-        black: "#000000",
-        white: "#ffffff",
-        textLight: "#585866",
-        textLighter: "#81818F",
-
-        // Icon colors
-        IconDefault: "#585866",
-        IconHovered: "#25252E",
-        IconPressed: "#44474A",
+        blue: "#377DFF",
+        green: "#38CB89",
+        orange: "#FFAB00",
+        red: "#FF5630",
+        primaryBlack: "#000000",
+        black07: "#141718",
+        black06: "#232627",
+        black05: "##343839",
+        black04: "##6C7275",
+        grey03: "#E8ECEF",
+        grey02: "#F3F5F7",
+        grey01: "#FEFEFE",
 
         // Status colors
         success: "#48C546",
