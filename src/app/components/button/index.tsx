@@ -1,23 +1,25 @@
-import { forwardRef } from "react";
+import { forwardRef, useState } from "react";
+
+export type Colors = "default" | "white" | "blue" | "green";
 
 type ButtonProps = {
   shape?: "soft" | "square" | "none";
   stretch?: boolean;
-  color?: "default" | "white" | "blue" | "green";
-  icon?: React.ReactNode;
+  color?: Colors;
+  icon?: ({ fill }: { fill?: "black" | "white" }) => JSX.Element;
   label?: string;
   className?: string;
   onClick?: () => void;
 };
 
-// Tailwind classes for ButtonProps types (shape/color)
+// Tailwind classes for ButtonProps ty  pes (shape/color)
 const buttonShapeClass = {
   soft: "rounded-full",
   square: "rounded-lg",
   none: "",
 };
 
-const buttonColorClass = {
+const buttonColorClass: Record<Colors, string> = {
   default: "bg-black07 text-white hover:bg-white hover:text-black07",
   white: "bg-white text-black07 hover:bg-black07 hover:text-white",
   blue: "bg-blue text-white hover:bg-white hover:text-black07",
@@ -38,6 +40,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref,
   ) => {
+    const [hovering, setHovering] = useState(false);
     return (
       <button
         ref={ref}
@@ -50,8 +53,11 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ${className} 
         `}
         {...rest}
+        onMouseEnter={() => setHovering(true)}
+        onMouseLeave={() => setHovering(false)}
       >
-        {icon}
+        {icon && hovering === false && icon({ fill: "black" })}
+        {icon && hovering === true && icon({ fill: "white" })}
         {label}
       </button>
     );
