@@ -40,6 +40,10 @@ const config: Config = {
         h2: "48px",
         h1: "56px",
       },
+      fontFamily: {
+        inter: ["var(--font-inter)"],
+        poppins: ["var(--font-poppins)"],
+      },
 
       spacing: {
         0: "0px",

@@ -3,12 +3,19 @@ import type { Metadata } from "next";
 import { Providers } from "./providers";
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
-import { Poppins } from "next/font/google";
+import { Poppins, Inter } from "next/font/google";
 
 const poppins = Poppins({
   weight: ["400", "700"],
   style: ["normal", "italic"],
   subsets: ["latin-ext"],
+  variable: "--font-poppins",
+});
+
+const inter = Inter({
+  weight: ["400", "700"],
+  subsets: ["latin-ext"],
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
@@ -24,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Providers>
-        <body className={`${poppins.className} bg-lightGray`}>
+        <body className={`${poppins.variable} ${inter.variable} bg-lightGray`}>
           <Navbar />
           {children}
           <Footer />
