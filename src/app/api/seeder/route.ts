@@ -112,11 +112,22 @@ async function seedDatabase() {
 
 const clearDatabase = async () => {
   await prisma.discountGroup.deleteMany({});
-  await prisma.category.deleteMany({});
   await prisma.productContent.deleteMany({});
   await prisma.productSpec.deleteMany({});
   await prisma.productVariant.deleteMany({});
   await prisma.product.deleteMany({});
+  await prisma.category.deleteMany({
+    where: {
+      parentId: {
+        not: null,
+      },
+    },
+  });
+  await prisma.category.deleteMany({
+    where: {
+      parentId: null,
+    },
+  });
 };
 
 const createCategories = async () => {

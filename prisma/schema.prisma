@@ -38,7 +38,6 @@ model ProductContent {
   url       String
   listUrl   String
   type      ContentType
-  mimetype  String
   productId Int
   product   Product     @relation(fields: [productId], references: [id])
 }
