@@ -1,149 +1,164 @@
 export const PRODUCT_CONTENT = [
+  // ErgoCraft Aspen Home Office Desk ✅
   [
     {
-      url: "http://example.com/image.jpg",
-      listUrl: "http://example.com/thumbnail.jpg",
+      url: "https://on9coewl1bh1lia7.public.blob.vercel-storage.com/ergocraft-aspen-home-office-desk-1.png",
+      listUrl:
+        "https://on9coewl1bh1lia7.public.blob.vercel-storage.com/ergocraft-aspen-home-office-desk-1.png",
       type: "IMAGE" as const,
-      mimetype: "image/jpeg",
     },
     {
-      url: "http://example.com/image.jpg",
-      listUrl: "http://example.com/thumbnail.jpg",
+      url: "https://on9coewl1bh1lia7.public.blob.vercel-storage.com/ergocraft-aspen-home-office-desk-2.png",
+      listUrl:
+        "https://on9coewl1bh1lia7.public.blob.vercel-storage.com/ergocraft-aspen-home-office-desk-2.png",
       type: "IMAGE" as const,
-      mimetype: "image/jpeg",
     },
   ],
+  // Minimalist Oak Bookshelf ✅
   [
     {
-      url: "http://example.com/image.jpg",
-      listUrl: "http://example.com/thumbnail.jpg",
+      url: "https://on9coewl1bh1lia7.public.blob.vercel-storage.com/minimalist-oak-bookshelf-1.png",
+      listUrl:
+        "https://on9coewl1bh1lia7.public.blob.vercel-storage.com/minimalist-oak-bookshelf-1.png",
       type: "IMAGE" as const,
-      mimetype: "image/jpeg",
     },
     {
-      url: "http://example.com/image.jpg",
-      listUrl: "http://example.com/thumbnail.jpg",
+      url: "https://on9coewl1bh1lia7.public.blob.vercel-storage.com/minimalist-oak-bookshelf-2.png",
+      listUrl:
+        "https://on9coewl1bh1lia7.public.blob.vercel-storage.com/minimalist-oak-bookshelf-2.png",
       type: "IMAGE" as const,
-      mimetype: "image/jpeg",
     },
     {
-      url: "http://example.com/image.jpg",
-      listUrl: "http://example.com/thumbnail.jpg",
+      url: "https://on9coewl1bh1lia7.public.blob.vercel-storage.com/minimalist-oak-bookshelf-3.png",
+      listUrl:
+        "https://on9coewl1bh1lia7.public.blob.vercel-storage.com/minimalist-oak-bookshelf-3.png",
       type: "IMAGE" as const,
-      mimetype: "image/jpeg",
     },
   ],
+  // Vintage Industrial Table Lamp ✅
   [
     {
-      url: "http://example.com/image.jpg",
-      listUrl: "http://example.com/thumbnail.jpg",
+      url: "https://on9coewl1bh1lia7.public.blob.vercel-storage.com/vintage-industrial-table-lamp-1.png",
+      listUrl:
+        "https://on9coewl1bh1lia7.public.blob.vercel-storage.com/vintage-industrial-table-lamp-1.png",
       type: "IMAGE" as const,
-      mimetype: "image/jpeg",
     },
   ],
+  // Sleek Adjustable Office Chair ✅
   [
     {
-      url: "http://example.com/image.jpg",
-      listUrl: "http://example.com/thumbnail.jpg",
+      url: "https://on9coewl1bh1lia7.public.blob.vercel-storage.com/sleek-adjustable-office-chair-1.png",
+      listUrl:
+        "https://on9coewl1bh1lia7.public.blob.vercel-storage.com/sleek-adjustable-office-chair-1.png",
       type: "IMAGE" as const,
-      mimetype: "image/jpeg",
     },
     {
-      url: "http://example.com/image.jpg",
-      listUrl: "http://example.com/thumbnail.jpg",
+      url: "https://on9coewl1bh1lia7.public.blob.vercel-storage.com/sleek-adjustable-office-chair-2.png",
+      listUrl:
+        "https://on9coewl1bh1lia7.public.blob.vercel-storage.com/sleek-adjustable-office-chair-2.png",
       type: "IMAGE" as const,
-      mimetype: "image/jpeg",
     },
     {
-      url: "http://example.com/image.jpg",
-      listUrl: "http://example.com/thumbnail.jpg",
+      url: "https://on9coewl1bh1lia7.public.blob.vercel-storage.com/sleek-adjustable-office-chair-3.png",
+      listUrl:
+        "https://on9coewl1bh1lia7.public.blob.vercel-storage.com/sleek-adjustable-office-chair-3.png",
       type: "IMAGE" as const,
-      mimetype: "image/jpeg",
     },
     {
-      url: "http://example.com/image.jpg",
-      listUrl: "http://example.com/thumbnail.jpg",
+      url: "https://on9coewl1bh1lia7.public.blob.vercel-storage.com/sleek-adjustable-office-chair-4.png",
+      listUrl:
+        "https://on9coewl1bh1lia7.public.blob.vercel-storage.com/sleek-adjustable-office-chair-4.png",
       type: "IMAGE" as const,
-      mimetype: "image/jpeg",
     },
     {
-      url: "http://example.com/image.jpg",
-      listUrl: "http://example.com/thumbnail.jpg",
+      url: "https://on9coewl1bh1lia7.public.blob.vercel-storage.com/sleek-adjustable-office-chair-5.png",
+      listUrl:
+        "https://on9coewl1bh1lia7.public.blob.vercel-storage.com/sleek-adjustable-office-chair-5.png",
       type: "IMAGE" as const,
-      mimetype: "image/jpeg",
     },
   ],
+  // Artisanal Ceramic Desk Organizer ✅
   [
     {
-      url: "http://example.com/image.jpg",
-      listUrl: "http://example.com/thumbnail.jpg",
+      url: "https://on9coewl1bh1lia7.public.blob.vercel-storage.com/artisanal-ceramic-desk-organizer-1.png",
+      listUrl:
+        "https://on9coewl1bh1lia7.public.blob.vercel-storage.com/artisanal-ceramic-desk-organizer-1.png",
       type: "IMAGE" as const,
-      mimetype: "image/jpeg",
     },
   ],
+  // Handcrafted Wooden Pen Holder ✅
   [
     {
-      url: "http://example.com/image.jpg",
-      listUrl: "http://example.com/thumbnail.jpg",
+      url: "https://on9coewl1bh1lia7.public.blob.vercel-storage.com/handcrafted-wooden-pen-holder-1.png",
+      listUrl:
+        "https://on9coewl1bh1lia7.public.blob.vercel-storage.com/handcrafted-wooden-pen-holder-1.png",
       type: "IMAGE" as const,
-      mimetype: "image/jpeg",
     },
     {
-      url: "http://example.com/image.jpg",
-      listUrl: "http://example.com/thumbnail.jpg",
+      url: "https://on9coewl1bh1lia7.public.blob.vercel-storage.com/handcrafted-wooden-pen-holder-2.png",
+      listUrl:
+        "https://on9coewl1bh1lia7.public.blob.vercel-storage.com/handcrafted-wooden-pen-holder-2.png",
       type: "IMAGE" as const,
-      mimetype: "image/jpeg",
     },
     {
-      url: "http://example.com/image.jpg",
-      listUrl: "http://example.com/thumbnail.jpg",
+      url: "https://on9coewl1bh1lia7.public.blob.vercel-storage.com/handcrafted-wooden-pen-holder-3.png",
+      listUrl:
+        "https://on9coewl1bh1lia7.public.blob.vercel-storage.com/handcrafted-wooden-pen-holder-3.png",
       type: "IMAGE" as const,
-      mimetype: "image/jpeg",
     },
   ],
+  // Retro Mechanical Keyboard ✅
   [
     {
-      url: "http://example.com/image.jpg",
-      listUrl: "http://example.com/thumbnail.jpg",
+      url: "https://on9coewl1bh1lia7.public.blob.vercel-storage.com/retro-mechanical-keyboard-1.png",
+      listUrl:
+        "https://on9coewl1bh1lia7.public.blob.vercel-storage.com/retro-mechanical-keyboard-1.png",
       type: "IMAGE" as const,
-      mimetype: "image/jpeg",
     },
     {
-      url: "http://example.com/image.jpg",
-      listUrl: "http://example.com/thumbnail.jpg",
+      url: "https://on9coewl1bh1lia7.public.blob.vercel-storage.com/retro-mechanical-keyboard-2.png",
+      listUrl:
+        "https://on9coewl1bh1lia7.public.blob.vercel-storage.com/retro-mechanical-keyboard-2.png",
       type: "IMAGE" as const,
-      mimetype: "image/jpeg",
     },
   ],
+  // Designer Mesh Backrest for Ergonomic Seating ✅
   [
     {
-      url: "http://example.com/image.jpg",
-      listUrl: "http://example.com/thumbnail.jpg",
+      url: "https://on9coewl1bh1lia7.public.blob.vercel-storage.com/designer-mesh-backrest-for-ergonomic-seating-1.png",
+      listUrl:
+        "https://on9coewl1bh1lia7.public.blob.vercel-storage.com/designer-mesh-backrest-for-ergonomic-seating-1.png",
       type: "IMAGE" as const,
-      mimetype: "image/jpeg",
+    },
+    {
+      url: "https://on9coewl1bh1lia7.public.blob.vercel-storage.com/designer-mesh-backrest-for-ergonomic-seating-2.png",
+      listUrl:
+        "https://on9coewl1bh1lia7.public.blob.vercel-storage.com/designer-mesh-backrest-for-ergonomic-seating-2.png",
+      type: "IMAGE" as const,
     },
   ],
+  // Bamboo Desk Tidy with USB Ports ✅
   [
     {
-      url: "http://example.com/image.jpg",
-      listUrl: "http://example.com/thumbnail.jpg",
+      url: "https://on9coewl1bh1lia7.public.blob.vercel-storage.com/bamboo-desk-tidy-with-usb-ports-1.png",
+      listUrl:
+        "https://on9coewl1bh1lia7.public.blob.vercel-storage.com/bamboo-desk-tidy-with-usb-ports-1.png",
       type: "IMAGE" as const,
-      mimetype: "image/jpeg",
     },
-
     {
-      url: "http://example.com/image.jpg",
-      listUrl: "http://example.com/thumbnail.jpg",
+      url: "https://on9coewl1bh1lia7.public.blob.vercel-storage.com/bamboo-desk-tidy-with-usb-ports-2.png",
+      listUrl:
+        "https://on9coewl1bh1lia7.public.blob.vercel-storage.com/bamboo-desk-tidy-with-usb-ports-2.png",
       type: "IMAGE" as const,
-      mimetype: "image/png",
     },
   ],
+  // Eco-Friendly Recycled Paper Notebook ✅
   [
     {
-      url: "http://example.com/image.jpg",
-      listUrl: "http://example.com/thumbnail.jpg",
+      url: "https://on9coewl1bh1lia7.public.blob.vercel-storage.com/eco-friendly-recycled-paper-notebook-1.png",
+      listUrl:
+        "https://on9coewl1bh1lia7.public.blob.vercel-storage.com/eco-friendly-recycled-paper-notebook-1.png",
       type: "IMAGE" as const,
-      mimetype: "image/jpeg",
     },
   ],
 ];
