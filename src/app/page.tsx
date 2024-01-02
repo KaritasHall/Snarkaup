@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <>
       <SectionContainer>
-        <div className="grid grid-cols-1 gap-[64px] lg:grid-cols-4">
+        <div className="divider grid grid-cols-1 gap-[64px] lg:grid-cols-4">
           {products?.map((product) => (
             <ProductCard key={product?.id} product={product} />
           ))}
