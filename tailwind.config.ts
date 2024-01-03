@@ -83,6 +83,8 @@ const config: Config = {
         255: "255px",
         "fluid-x": "clamp(16px, 0.062 * 100vw, 120px)",
         "fluid-y": "clamp(18px, 0.019 * 100vw, 50px)",
+        "card-w": "clamp(9.5rem, 7.079rem + 10.329vw, 16.375rem)",
+        "card-h": "clamp(12.625rem, 9.368rem + 13.897vw, 21.875rem)",
       },
     },
   },
