@@ -1,13 +1,26 @@
 import { useQuery } from "@tanstack/react-query";
+import {
+  Product,
+  ProductContent,
+  ProductVariant,
+  Category,
+} from "@prisma/client";
 
-export interface Category {
+export interface AugmentedProduct extends Product {
+  content: ProductContent[];
+  variants: ProductVariant[];
+  listImage?: string;
+  lowestPrice?: number;
+}
+// TODO: Delete old categories after testing
+export interface OldCategory {
   id: number;
   title: string;
   slug: string;
 }
 
 // This is the type of the data that we will get from the API
-export interface Product {
+export interface OldProduct {
   id: number;
   title: string;
   price: number;
@@ -33,10 +46,23 @@ export function useProducts({ id, category }: UseProductsProps) {
     isLoading: productsIsLoading,
   } = useQuery({
     queryKey: ["products"],
+    enabled: !(!!id || !!category),
     queryFn: async () => {
-      const res = await fetch("https://fakestoreapi.com/products");
+      const res = await fetch("/api/products");
       const data = await res.json();
-      return data as Product[];
+
+      // Augment the data with the list image
+      const augmentedData = data.map((product: Product) => ({
+        ...product,
+        listImage: (product as AugmentedProduct).content[0].listUrl,
+        lowestPrice: Math.min(
+          ...(product as AugmentedProduct).variants.map(
+            (variant: ProductVariant) => variant.price,
+          ),
+        ),
+      }));
+
+      return augmentedData as AugmentedProduct[];
     },
   });
 
@@ -66,9 +92,9 @@ export function useProducts({ id, category }: UseProductsProps) {
   } = useQuery({
     queryKey: ["product", id],
     queryFn: async () => {
-      const res = await fetch(`https://fakestoreapi.com/products/${id}`);
+      const res = await fetch("/api/products/" + id);
       const data = await res.json();
-      return data as Product;
+      return data as AugmentedProduct;
     },
     enabled: id != null,
   });
@@ -85,7 +111,7 @@ export function useProducts({ id, category }: UseProductsProps) {
         `https://fakestoreapi.com/products/category/${category}`,
       );
       const data = await res.json();
-      return data as Product[];
+      return data as AugmentedProduct[];
     },
     enabled: category != null && typeof category === "string",
   });
