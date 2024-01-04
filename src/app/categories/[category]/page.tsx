@@ -17,7 +17,7 @@ export default function CategoryPage({
   return (
     <CategorySection
       categoryTitle={categoryTitle}
-      products={productsByCategory}
+      products={productsByCategory || []}
     />
   );
 }
