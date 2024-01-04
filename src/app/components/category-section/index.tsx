@@ -1,10 +1,10 @@
-import { Product } from "@/app/hooks/useProducts";
+import { AugmentedProduct } from "@/app/hooks/useProducts";
 import SectionContainer from "@/app/components/section-container";
 import ProductCard from "@/app/components/product-card";
 
 interface CategorySectionProps {
   categoryTitle: string;
-  products: Product[] | undefined;
+  products: AugmentedProduct[];
 }
 
 function CategorySection({ categoryTitle, products }: CategorySectionProps) {
