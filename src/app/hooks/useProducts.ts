@@ -74,13 +74,15 @@ export function useProducts({ id, category }: UseProductsProps) {
   } = useQuery({
     queryKey: ["categories"],
     queryFn: async () => {
-      const res = await fetch("https://fakestoreapi.com/products/categories");
+      const res = await fetch("/api/categories");
       const data = await res.json();
-      const productCategories = data.map((category: string, index: number) => ({
-        id: index,
-        title: category,
-        slug: encodeURI(category),
-      }));
+      const productCategories = data.map(
+        (category: Category, index: number) => ({
+          id: index,
+          title: category,
+          slug: encodeURI(category.title),
+        }),
+      );
       return productCategories;
     },
   });
@@ -107,9 +109,7 @@ export function useProducts({ id, category }: UseProductsProps) {
   } = useQuery({
     queryKey: ["productsByCategory", category],
     queryFn: async () => {
-      const res = await fetch(
-        `https://fakestoreapi.com/products/category/${category}`,
-      );
+      const res = await fetch("/api/categories/" + category);
       const data = await res.json();
       return data as AugmentedProduct[];
     },
