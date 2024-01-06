@@ -100,7 +100,7 @@ export function useProducts({ id, category }: UseProductsProps) {
       const childrenProducts = category.children
         ? category.children.flatMap((child) => extract(child))
         : [];
-      console.log("children", childrenProducts);
+
       return augmentProductsList([...directProducts, ...childrenProducts]);
     };
 
@@ -117,7 +117,6 @@ export function useProducts({ id, category }: UseProductsProps) {
     }));
   }
 
-  console.log("products", products, "Extracted", extractProducts);
   return {
     product,
     products: extractProducts.length !== 0 ? extractProducts : products,

@@ -6,7 +6,6 @@ import Link from "next/link";
 
 export default function CategoryPage() {
   const { categories } = useProducts({});
-  console.log("Component:", categories);
 
   return (
     <div>

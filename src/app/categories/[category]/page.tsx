@@ -14,10 +14,6 @@ export default function CategoryPage({
 
   const categoryTitle = decodeURI(params.category);
 
-  console.log({
-    products,
-  });
-
   return (
     <>
       {productsByCategory && (
