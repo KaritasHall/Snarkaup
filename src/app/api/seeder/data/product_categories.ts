@@ -12,6 +12,6 @@ export const SUB_CATEGORIES = [
   "Office Chairs",
   "Table Lamps",
   "Shelves",
-  "Monitors",
-  "Pens",
+  "Keyboards",
+  "Organizing",
 ];
