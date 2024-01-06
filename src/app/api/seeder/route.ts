@@ -59,9 +59,6 @@ async function seedDatabase() {
 
   // link products to categories
   const allCategories = subCategories.map((cat) => cat.title).join(", ");
-  console.log("---");
-  console.log("assigning products to categories");
-  console.log(allCategories);
   await Promise.all(
     products.map(async ({ id, title }) => {
       // Standing Desks, Office Chairs, Table Lamps, Shelves, Keyboards, Notebooks
@@ -70,19 +67,9 @@ async function seedDatabase() {
           (cat) => cat.title === "Standing Desks",
         );
 
-        console.log("---");
-        console.log("assigning product to category");
-        console.log(title, "to", category?.title);
-        console.log("productId", id, "to categoryId", category?.id);
-
         await assignCategoryToProduct(id, category?.id);
       } else if (title === "Minimalist Oak Bookshelf") {
         const category = subCategories.find((cat) => cat.title === "Shelves");
-
-        console.log("---");
-        console.log("assigning product to category");
-        console.log(title, "to", category?.title);
-        console.log("productId", id, "to categoryId", category?.id);
 
         await assignCategoryToProduct(id, category?.id);
       } else if (title === "Vintage Industrial Table Lamp") {
@@ -90,21 +77,11 @@ async function seedDatabase() {
           (cat) => cat.title === "Table Lamps",
         );
 
-        console.log("---");
-        console.log("assigning product to category");
-        console.log(title, "to", category?.title);
-        console.log("productId", id, "to categoryId", category?.id);
-
         await assignCategoryToProduct(id, category?.id);
       } else if (title === "Sleek Adjustable Office Chair") {
         const category = subCategories.find(
           (cat) => cat.title === "Office Chairs",
         );
-
-        console.log("---");
-        console.log("assigning product to category");
-        console.log(title, "to", category?.title);
-        console.log("productId", id, "to categoryId", category?.id);
 
         await assignCategoryToProduct(id, category?.id);
       } else if (title === "Artisanal Ceramic Desk Organizer") {
@@ -112,30 +89,15 @@ async function seedDatabase() {
           (cat) => cat.title === "Organizing",
         );
 
-        console.log("---");
-        console.log("assigning product to category");
-        console.log(title, "to", category?.title);
-        console.log("productId", id, "to categoryId", category?.id);
-
         await assignCategoryToProduct(id, category?.id);
       } else if (title === "Handcrafted Wooden Pen Holder") {
         const category = subCategories.find(
           (cat) => cat.title === "Organizing",
         );
 
-        console.log("---");
-        console.log("assigning product to category");
-        console.log(title, "to", category?.title);
-        console.log("productId", id, "to categoryId", category?.id);
-
         await assignCategoryToProduct(id, category?.id);
       } else if (title === "Retro Mechanical Keyboard") {
         const category = subCategories.find((cat) => cat.title === "Keyboards");
-
-        console.log("---");
-        console.log("assigning product to category");
-        console.log(title, "to", category?.title);
-        console.log("productId", id, "to categoryId", category?.id);
 
         await assignCategoryToProduct(id, category?.id);
       } else if (title === "Designer Mesh Backrest for Ergonomic Seating") {
@@ -143,42 +105,17 @@ async function seedDatabase() {
           (cat) => cat.title === "Office Chairs",
         );
 
-        console.log("---");
-        console.log("assigning product to category");
-        console.log(title, "to", category?.title);
-        console.log("productId", id, "to categoryId", category?.id);
-
         await assignCategoryToProduct(id, category?.id);
       } else if (title === "Bamboo Desk Tidy with USB Ports") {
         const category = subCategories.find(
           (cat) => cat.title === "Organizing",
         );
 
-        console.log("---");
-        console.log("assigning product to category");
-        console.log(title, "to", category?.title);
-        console.log("productId", id, "to categoryId", category?.id);
-
-        if (!category) {
-          console.log("no category found");
-
-          const allCategories = subCategories
-            .map((cat) => cat.title)
-            .join(", ");
-
-          console.log("we did look for", "Organizing", "in", allCategories);
-        }
-
         await assignCategoryToProduct(id, category?.id);
       } else if (title === "Eco-Friendly Recycled Paper Notebook") {
         const category = subCategories.find(
           (cat) => cat.title === "Organizing",
         );
-
-        console.log("---");
-        console.log("assigning product to category");
-        console.log(title, "to", category?.title);
-        console.log("productId", id, "to categoryId", category?.id);
 
         await assignCategoryToProduct(id, category?.id);
       }
