@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { useMemo } from "react";
 import {
   Product,
   ProductContent,
@@ -12,25 +13,10 @@ export interface AugmentedProduct extends Product {
   listImage?: string;
   lowestPrice?: number;
 }
-// TODO: Delete old categories after testing
-export interface OldCategory {
-  id: number;
-  title: string;
-  slug: string;
-}
 
-// This is the type of the data that we will get from the API
-export interface OldProduct {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string;
-  rating: {
-    rate: number;
-    count: number;
-  };
+export interface AugmentedCategory extends Category {
+  children?: AugmentedCategory[];
+  products?: AugmentedProduct[];
 }
 
 interface UseProductsProps {
@@ -52,17 +38,7 @@ export function useProducts({ id, category }: UseProductsProps) {
       const data = await res.json();
 
       // Augment the data with the list image
-      const augmentedData = data.map((product: Product) => ({
-        ...product,
-        listImage: (product as AugmentedProduct).content[0].listUrl,
-        lowestPrice: Math.min(
-          ...(product as AugmentedProduct).variants.map(
-            (variant: ProductVariant) => variant.price,
-          ),
-        ),
-      }));
-
-      return augmentedData as AugmentedProduct[];
+      return augmentProductsList(data);
     },
   });
 
@@ -71,7 +47,7 @@ export function useProducts({ id, category }: UseProductsProps) {
     data: categories,
     error: categoriesError,
     isLoading: categoriesIsLoading,
-  } = useQuery({
+  } = useQuery<Category[]>({
     queryKey: ["categories"],
     queryFn: async () => {
       const res = await fetch("/api/categories");
@@ -79,10 +55,11 @@ export function useProducts({ id, category }: UseProductsProps) {
       const productCategories = data.map(
         (category: Category, index: number) => ({
           id: index,
-          title: category,
+          title: category.title,
           slug: encodeURI(category.title),
         }),
       );
+
       return productCategories;
     },
   });
@@ -106,19 +83,44 @@ export function useProducts({ id, category }: UseProductsProps) {
     data: productsByCategory,
     error: productsByCategoryError,
     isLoading: productsByCategoryIsLoading,
-  } = useQuery({
+  } = useQuery<AugmentedCategory>({
     queryKey: ["productsByCategory", category],
     queryFn: async () => {
       const res = await fetch("/api/categories/" + category);
       const data = await res.json();
-      return data as AugmentedProduct[];
+      return data as AugmentedCategory;
     },
     enabled: category != null && typeof category === "string",
   });
 
+  // Extract products from categories and their children
+  const extractProducts = useMemo(() => {
+    const extract = (category: AugmentedCategory): AugmentedProduct[] => {
+      const directProducts = category.products || [];
+      const childrenProducts = category.children
+        ? category.children.flatMap((child) => extract(child))
+        : [];
+      console.log("children", childrenProducts);
+      return augmentProductsList([...directProducts, ...childrenProducts]);
+    };
+
+    return productsByCategory ? extract(productsByCategory) : [];
+  }, [productsByCategory]);
+
+  function augmentProductsList(products: AugmentedProduct[]) {
+    return products.map((product) => ({
+      ...product,
+      listImage: product.content[0].listUrl,
+      lowestPrice: Math.min(
+        ...product.variants.map((variant: ProductVariant) => variant.price),
+      ),
+    }));
+  }
+
+  console.log("products", products, "Extracted", extractProducts);
   return {
     product,
-    products,
+    products: extractProducts.length !== 0 ? extractProducts : products,
     categories,
     productsByCategory,
   };

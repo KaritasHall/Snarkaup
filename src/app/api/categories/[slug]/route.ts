@@ -10,15 +10,36 @@ export async function GET(
       title: params.slug,
     },
     include: {
-      products: true,
+      products: {
+        include: {
+          category: true,
+          discountGroup: true,
+          content: true,
+          variants: true,
+        },
+      },
       parent: {
         include: {
-          products: true,
+          products: {
+            include: {
+              category: true,
+              discountGroup: true,
+              content: true,
+              variants: true,
+            },
+          },
         },
       },
       children: {
         include: {
-          products: true,
+          products: {
+            include: {
+              category: true,
+              discountGroup: true,
+              content: true,
+              variants: true,
+            },
+          },
         },
       },
     },

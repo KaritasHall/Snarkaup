@@ -8,16 +8,25 @@ export default function CategoryPage({
 }: {
   params: { category: string };
 }) {
-  const { productsByCategory } = useProducts({
+  const { productsByCategory, products } = useProducts({
     category: params.category,
   });
 
   const categoryTitle = decodeURI(params.category);
 
+  console.log({
+    products,
+  });
+
   return (
-    <CategorySection
-      categoryTitle={categoryTitle}
-      products={productsByCategory || []}
-    />
+    <>
+      {productsByCategory && (
+        <CategorySection
+          title={categoryTitle}
+          products={products || []}
+          category={productsByCategory}
+        />
+      )}
+    </>
   );
 }
