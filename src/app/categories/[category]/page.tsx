@@ -18,7 +18,6 @@ export default function CategoryPage({
     <>
       {productsByCategory && (
         <CategorySection
-          title={categoryTitle}
           products={products || []}
           category={productsByCategory}
         />
