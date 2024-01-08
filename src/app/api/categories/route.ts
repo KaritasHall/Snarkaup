@@ -1,21 +1,8 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { prisma } from "@api/utils";
 
-export async function GET(request: NextRequest) {
-  const searchParams = request.nextUrl.searchParams;
-  const categoryName = searchParams.get("category");
-
-  if (!categoryName) {
-    return NextResponse.json(
-      { error: "No category provided" },
-      { status: 400 },
-    );
-  }
-
-  const category = await prisma.category.findFirst({
-    where: {
-      title: categoryName,
-    },
+export async function GET() {
+  const categories = await prisma.category.findMany({
     include: {
       products: true,
       parent: {
@@ -31,5 +18,5 @@ export async function GET(request: NextRequest) {
     },
   });
 
-  return NextResponse.json(category);
+  return NextResponse.json(categories);
 }
