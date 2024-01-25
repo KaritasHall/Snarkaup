@@ -38,10 +38,12 @@ const CartCard = ({ product }: CartCardProps) => {
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-[60px] bg-red">
+      <div className="grid grid-cols-3 gap-[60px]">
         <p>counter</p>
-        <h3 className="text-sm leading-6">${product.lowestPrice}</h3>
-        <p className="">subtotal</p>
+        <h3 className="font-inter text-lg leading-6">${product.lowestPrice}</h3>
+        <p className="font-inter text-lg font-semibold leading-6">
+          ${product.lowestPrice}
+        </p>
       </div>
     </div>
   );
