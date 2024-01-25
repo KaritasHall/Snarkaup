@@ -1,7 +1,7 @@
 ## Snarkaup
 
 This e-commerce website is a hobby project collaboration with [Andri Rafn](https://github.com/AndriRafnR) 🤝
-<br>Andri built the backend with [Vercel's Postgres solution](https://vercel.com/docs/storage/vercel-postgres)
+<br>Andri built the backend with [Vercel's Postgres solution](https://vercel.com/docs/storage/vercel-postgres) and [Prisma](https://www.prisma.io)
 
 <br> I built the frontend with:
 
