@@ -13,6 +13,11 @@
     - The "html" element is excluded, otherwise a bug in Chrome breaks the CSS hyphens property (https://github.com/elad2412/the-new-css-reset/issues/36)
  */
 
+.debug {
+  outline: 1px solid red;
+  background-color: rgba(255, 0, 0, 0.1);
+}
+
 body {
   min-height: 100dvh;
   display: grid;
@@ -115,6 +120,6 @@ meter {
 
 @layer utilities {
   .divider {
-    @apply border-black04 border-b-[1px];
+    @apply border-b-[1px] border-black04;
   }
 }
