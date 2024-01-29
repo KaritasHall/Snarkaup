@@ -1,7 +1,7 @@
 import { AugmentedProduct, useProducts } from "./useProducts";
 import { useRecoilState } from "recoil";
 import { cartState } from "../cartAtom";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 
 export type CartItem = {
   quantity: number;
@@ -34,6 +34,8 @@ export function useCart() {
         } else {
           updatedCart.splice(productIndex, 1);
         }
+
+        updateLocalstorageCart(updatedCart);
         return updatedCart;
       } else {
         if (quantityChange < 1) {
@@ -41,6 +43,7 @@ export function useCart() {
           console.error(
             `Can't add non-positive quantity for product ID ${productId}`,
           );
+
           return currentCart;
         }
         // Find the product in the list to ensure it exists before adding
@@ -49,8 +52,14 @@ export function useCart() {
           // Product not found in the product list, throw an error
           throw new Error(`Product with ID ${productId} not found`);
         }
+
+        const updatedCart = [
+          ...currentCart,
+          { product, quantity: quantityChange },
+        ];
         // Add the new product with the given quantity
-        return [...currentCart, { product, quantity: quantityChange }];
+        updateLocalstorageCart(updatedCart);
+        return updatedCart;
       }
     });
   }
@@ -80,15 +89,21 @@ export function useCart() {
         updatedCart.splice(cartItemIndex, 1);
       }
 
+      updateLocalstorageCart(updatedCart);
       return updatedCart;
     });
   }
 
   // Remove a product from the cart
   function removeFromCart(productId: number) {
-    setCart((currentCart) =>
-      currentCart.filter((item) => item.product.id !== productId),
-    );
+    setCart((currentCart) => {
+      const updatedCart = currentCart.filter(
+        (item) => item.product.id !== productId,
+      );
+
+      updateLocalstorageCart(updatedCart);
+      return updatedCart;
+    });
   }
 
   // Show item quantity in cart
@@ -98,9 +113,22 @@ export function useCart() {
   }
 
   // save cart to local storage
+  const updateLocalstorageCart = useCallback((updatedCart: CartItem[]) => {
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+  }, []);
+
   useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
+    const cartLS = localStorage.getItem("cart");
+    if (cartLS && cartLS !== "undefined") {
+      setCart((currentCart) => {
+        if (currentCart.length > 0) {
+          return currentCart;
+        }
+
+        return JSON.parse(cartLS);
+      });
+    }
+  }, [setCart]);
 
   return {
     cart,
