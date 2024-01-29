@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { AugmentedProduct } from "@/app/hooks/useProducts";
 import { useCart, CartItem } from "@/app/hooks/useCart";
 import { CloseButton } from "../close-button";
 import { useState } from "react";
@@ -14,21 +13,22 @@ const CartCard = ({ cartItem }: CartCardProps) => {
   const { removeFromCart, addToCart, showItemQuantity, decreaseQuantity } =
     useCart();
 
-  const cartQuantity = showItemQuantity(cartItem?.product.id);
+  const cartProduct = cartItem?.product;
+  const cartProductId = cartItem?.product.id;
 
-  // Managing product quantity
+  const cartQuantity = showItemQuantity(cartProductId);
   const [quantity, setQuantity] = useState<number>(cartQuantity);
 
   const incrementQuantity = () => {
     const newQuantity = quantity + 1;
     setQuantity(newQuantity);
-    addToCart(cartItem.product.id, 1);
+    addToCart(cartProductId, 1);
   };
 
   const decrementQuantity = () => {
     const newQuantity = quantity - 1;
     setQuantity(newQuantity);
-    decreaseQuantity(cartItem.product.id);
+    decreaseQuantity(cartProductId);
   };
 
   return (
@@ -36,10 +36,10 @@ const CartCard = ({ cartItem }: CartCardProps) => {
       <div className="flex gap-16">
         <div className="h-96 w-80">
           <Link href={`/${cartItem?.product.slug}`}>
-            {cartItem?.product.listImage && (
+            {cartProduct.listImage && (
               <Image
-                src={cartItem?.product.listImage}
-                alt={cartItem?.product.title}
+                src={cartProduct.listImage}
+                alt={cartProduct.title}
                 className="h-full w-full object-cover"
                 width={255}
                 height={255}
@@ -49,16 +49,16 @@ const CartCard = ({ cartItem }: CartCardProps) => {
         </div>
         <div className="flex w-[210px] flex-col gap-8">
           <h2 className="line-clamp-1 text-sm font-semibold leading-6 tracking-wide text-black07">
-            {cartItem?.product.title}
+            {cartProduct.title}
           </h2>
-          {/* TODO: Add current variant */}
+          {/* TODO: Hvernig set ég réttan variant f. viðeigandi vöru?? */}
           {cartItem?.product.variants && (
             <p className="text-label text-black04">
-              {cartItem.product.variants[0].title}
+              {cartProduct.variants[0].title}
             </p>
           )}
           <CloseButton
-            onClick={() => removeFromCart(cartItem?.product.id)}
+            onClick={() => removeFromCart(cartProductId)}
             label="Remove"
           />
         </div>
@@ -77,10 +77,10 @@ const CartCard = ({ cartItem }: CartCardProps) => {
           </button>
         </div>
         <p className="font-inter text-lg leading-6">
-          ${cartItem?.product.lowestPrice}
+          ${cartProduct.lowestPrice}
         </p>
         <p className="text-right font-inter text-lg font-semibold leading-6">
-          ${cartItem?.product.lowestPrice}
+          ${cartProduct.lowestPrice}
         </p>
       </div>
     </div>

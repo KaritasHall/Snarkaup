@@ -1,7 +1,7 @@
-import { useState } from "react";
 import { AugmentedProduct, useProducts } from "./useProducts";
 import { useRecoilState } from "recoil";
 import { cartState } from "../cartAtom";
+import { useEffect } from "react";
 
 export type CartItem = {
   quantity: number;
@@ -13,14 +13,13 @@ export function useCart() {
 
   const { products } = useProducts({});
 
-  // Add a product to the cart (or update the quantity if it's already there)
   function addToCart(productId: number, quantityChange: number) {
     setCart((currentCart) => {
       const productIndex = currentCart.findIndex(
         (item) => item.product.id === productId,
       );
 
-      // If the product is already in the cart, update the quantity
+      // Product found in the cart, update the quantity
       if (productIndex !== -1) {
         let updatedCart = [...currentCart];
         let newQuantity = updatedCart[productIndex].quantity + quantityChange;
@@ -36,7 +35,6 @@ export function useCart() {
           updatedCart.splice(productIndex, 1);
         }
         return updatedCart;
-        // Product not found in the cart and we're adding, not removing
       } else {
         if (quantityChange < 1) {
           // Can't add a non-positive quantity for a new cart item
@@ -46,7 +44,7 @@ export function useCart() {
           return currentCart;
         }
         // Find the product in the list to ensure it exists before adding
-        const product = products?.find((p) => p.id === productId);
+        const product = products?.find((product) => product.id === productId);
         if (!product) {
           // Product not found in the product list, throw an error
           throw new Error(`Product with ID ${productId} not found`);
@@ -91,7 +89,6 @@ export function useCart() {
     setCart((currentCart) =>
       currentCart.filter((item) => item.product.id !== productId),
     );
-    console.log("removeFromCart");
   }
 
   // Show item quantity in cart
@@ -99,6 +96,11 @@ export function useCart() {
     const cartItem = cart.find((item) => item.product.id === productId);
     return cartItem ? cartItem.quantity : 0;
   }
+
+  // save cart to local storage
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
   return {
     cart,
