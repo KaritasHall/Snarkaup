@@ -1,16 +1,15 @@
 import Menubar from "../menubar";
+import SearchBar from "../searchbar";
 
 const Navbar = () => {
   return (
-    <div className="px-fluid-x lg:pb-30 pb-10">
-      <nav className="h-120 lg:pb-18 lg:h-88 flex w-full justify-between bg-red-200 py-16 lg:pt-24">
-        <div className="flex-row">
-          <h1>Logo</h1>
-          <p>Searchbar</p>
-        </div>
+    <div className="px-fluid-x pb-10 lg:pb-30">
+      <nav className="flex h-120 w-full gap-24 py-16 lg:h-88 lg:pb-18 lg:pt-24">
+        <h1>Logo</h1>
+        <SearchBar placeholder="Search" />
         <p>Cart</p>
       </nav>
-      <Menubar />
+      {/* <Menubar /> */}
     </div>
   );
 };
