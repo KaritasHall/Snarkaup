@@ -2,7 +2,6 @@
 
 import { useProducts } from "@/app/hooks/useProducts";
 import SectionContainer from "../components/section-container";
-import ProductCard from "../components/product-card";
 import ProductGrid from "../components/product-grid";
 
 export default function SearchPage({
