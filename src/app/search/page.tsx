@@ -6,6 +6,8 @@ import ProductGrid from "../components/product-grid";
 
 const limit = 4;
 
+import { useThrottle } from "react-use";
+
 export default function SearchPage({
   searchParams,
 }: {
@@ -14,13 +16,16 @@ export default function SearchPage({
     page?: string;
   };
 }) {
-  const query = searchParams?.query || "";
+  // TODO: Implement search functionality, use useThrottle to throttle the query
+  // Create Search Hook, useSearch, that handles the search functionality and returns the products
+  // endpoint is search/:query, example: /api/search/Eco
+  const throttledQuery = useThrottle(searchParams?.query, 3000) || "";
   const currentPage = Number(searchParams?.page) || 1;
 
   const { products } = useProducts({});
 
   const filteredProducts = products?.filter((product) =>
-    product.title.toLowerCase().includes(query.toLowerCase()),
+    product.title.toLowerCase().includes(throttledQuery.toLowerCase()),
   );
 
   const currentProducts = filteredProducts?.slice(
