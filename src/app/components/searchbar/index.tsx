@@ -27,7 +27,6 @@ export default function SearchBar({ placeholder }: { placeholder: string }) {
     replace(`/search?query=${searchParams.get("query")}`);
   }
 
-  console.log("isActive", isActive);
   return (
     <div className="relative flex h-full w-full items-center">
       <div className="mr-[34px] h-full w-full">

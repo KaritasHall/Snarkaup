@@ -5,9 +5,7 @@ const ProductGrid = ({ products }: { products: AugmentedProduct[] }) => {
   return (
     <div className="grid grid-cols-3 gap-y-24">
       {products?.map((product) => (
-        <div>
-          <ProductCard key={product.id} product={product} />
-        </div>
+        <ProductCard key={product.id} product={product} />
       ))}
     </div>
   );

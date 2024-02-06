@@ -4,6 +4,8 @@ import { useProducts } from "@/app/hooks/useProducts";
 import SectionContainer from "../components/section-container";
 import ProductGrid from "../components/product-grid";
 
+const limit = 4;
+
 export default function SearchPage({
   searchParams,
 }: {
@@ -14,7 +16,6 @@ export default function SearchPage({
 }) {
   const query = searchParams?.query || "";
   const currentPage = Number(searchParams?.page) || 1;
-  const limit = 4;
 
   const { products } = useProducts({});
 
