@@ -10,6 +10,7 @@ type ButtonProps = {
   label?: string;
   className?: string;
   onClick?: () => void;
+  ariaLabel?: string;
 };
 
 // Tailwind classes for ButtonProps types (shape/color)
@@ -36,6 +37,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       label,
       className = "",
       onClick,
+      ariaLabel,
       ...rest
     },
     ref,
@@ -45,6 +47,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         onClick={onClick}
+        aria-label={ariaLabel}
         className={`flex items-center justify-center gap-4 px-56 py-12 text-sm outline 
         outline-1 outline-inherit lg:gap-8 lg:text-base 
         ${buttonShapeClass[shape]} 
