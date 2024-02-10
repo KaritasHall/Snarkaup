@@ -20,8 +20,8 @@ export default function Home() {
           <div>
             <h2 className="text-2xl font-bold">Products</h2>
             {products?.map((product, index) => (
-              <div>
-                <ProductCard key={product.id} product={product} />
+              <div key={product.id}>
+                <ProductCard product={product} />
                 <button
                   key={index}
                   onClick={() => addToCart(product?.id ?? 0, 1)}
