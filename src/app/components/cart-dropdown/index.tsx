@@ -14,18 +14,19 @@ const CartDropdown = ({ isCartOpen, setIsCartOpen }: CartDropdownProps) => {
   const { cart } = useCart();
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  //   useEffect(() => {
-  //     const handleClickOutside = (event: any) => {
-  //       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-  //         setIsCartOpen(false);
-  //       }
-  //     };
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        event.stopPropagation();
+        setIsCartOpen(false);
+      }
+    };
 
-  //     document.addEventListener("mousedown", handleClickOutside);
-  //     return () => {
-  //       document.removeEventListener("mousedown", handleClickOutside);
-  //     };
-  //   }, []);
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
   return (
     <>

@@ -5,6 +5,9 @@ import { CloseButton } from "../close-button";
 import { useState } from "react";
 import { MinusIcon, PlusIcon } from "../icons";
 
+// TODO: Leggja saman vöruverð f. card items og birta
+// TODO: Birta réttan variant f. viðeigandi vöru
+
 interface CartCardProps {
   cartItem: CartItem;
 }
@@ -76,9 +79,11 @@ const CartCard = ({ cartItem }: CartCardProps) => {
             <PlusIcon />
           </button>
         </div>
-        <p className="font-inter text-lg leading-6">
+        {/* Shows price of single product */}
+        <p className="hidden font-inter text-lg leading-6 lg:block">
           ${cartProduct.lowestPrice}
         </p>
+        {/* Shows the price sum of multiple items of a product*/}
         <p className="text-right font-inter text-lg font-semibold leading-6">
           ${cartProduct.lowestPrice}
         </p>
