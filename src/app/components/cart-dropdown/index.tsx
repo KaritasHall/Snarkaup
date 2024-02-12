@@ -16,7 +16,10 @@ const CartDropdown = ({ isCartOpen, setIsCartOpen }: CartDropdownProps) => {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
         event.stopPropagation();
         setIsCartOpen(false);
       }
