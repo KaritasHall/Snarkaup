@@ -1,9 +1,8 @@
 import { useCart } from "@/app/hooks/useCart";
 import CartCard from "@/app/components/cart-card";
-import SectionContainer from "../section-container";
-import { CloseButton } from "../close-button";
 import Link from "next/link";
 import { useRef, useEffect } from "react";
+import { ShoppingBagIcon } from "../icons/shopping-bag-icon";
 
 type CartDropdownProps = {
   isCartOpen: boolean;
@@ -36,27 +35,29 @@ const CartDropdown = ({ isCartOpen, setIsCartOpen }: CartDropdownProps) => {
       {isCartOpen && (
         <div
           ref={dropdownRef}
-          className="absolute right-[63px] top-[80px] z-50 bg-white shadow-lg"
+          className="absolute right-[63px] top-[80px] z-50 border-[1px] border-grey02 bg-white shadow-lg"
         >
           <div className="max-h-[75vh] overflow-y-auto px-8">
-            <div className="flex justify-between">
-              <h2 className="text-2xl font-bold">Cart</h2>
-              <CloseButton
-                aria-label="Close dropdown"
-                onClick={() => setIsCartOpen(false)}
-              />
-            </div>
+            {cart.length === 0 && (
+              <div className="flex flex-col items-center justify-center gap-12 px-40 py-[60px]">
+                <ShoppingBagIcon fill="grey" />
+                <p className="text-lg text-black04">Your cart is empty</p>
+              </div>
+            )}
             {cart.map((cartItem, index) => (
               <CartCard key={index} cartItem={cartItem} />
             ))}
           </div>
-          <Link
-            className="flex w-full justify-center bg-black07 p-10 text-white"
-            aria-label="Go to cart"
-            href="/cart"
-          >
-            <p>Go to cart</p>
-          </Link>
+          {cart.length > 0 && (
+            <Link
+              className="flex w-full justify-center bg-black07 p-10 text-white"
+              aria-label="Go to cart"
+              href="/cart"
+              onClick={() => setIsCartOpen(false)}
+            >
+              <p>Go to cart</p>
+            </Link>
+          )}
         </div>
       )}
     </>
