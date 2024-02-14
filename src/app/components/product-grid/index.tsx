@@ -1,4 +1,4 @@
-import ProductCard from "../product-card";
+import ProductCard from "@/app/components/product-cards/product-card";
 import { AugmentedProduct } from "@/app/hooks/useProducts";
 
 const ProductGrid = ({ products }: { products: AugmentedProduct[] }) => {
