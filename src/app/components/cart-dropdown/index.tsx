@@ -1,8 +1,9 @@
-import { useCart } from "@/app/hooks/useCart";
+import { useCart, CartItem } from "@/app/hooks/useCart";
 import CartCard from "@/app/components/cart-card";
 import Link from "next/link";
 import { useRef, useEffect } from "react";
 import { ShoppingBagIcon } from "../icons/shopping-bag-icon";
+import { formatPrice } from "@/app/utils/format-price";
 
 type CartDropdownProps = {
   isCartOpen: boolean;
@@ -30,6 +31,13 @@ const CartDropdown = ({ isCartOpen, setIsCartOpen }: CartDropdownProps) => {
     };
   }, []);
 
+  // Calculate the total price of all items in the cart
+  const totalCartPrice = cart.reduce(
+    (acc, item) => acc + (item?.product?.lowestPrice ?? 0) * item.quantity,
+
+    0,
+  );
+
   return (
     <>
       {isCartOpen && (
@@ -44,20 +52,30 @@ const CartDropdown = ({ isCartOpen, setIsCartOpen }: CartDropdownProps) => {
                 <p className="text-lg text-black04">Your cart is empty</p>
               </div>
             )}
+            {cart.length > 0 && (
+              <div className="flex-col">
+                <Link
+                  className="relative flex w-full justify-center border-2 border-black05 p-10"
+                  aria-label="View cart"
+                  href="/cart"
+                  onClick={() => setIsCartOpen(false)}
+                >
+                  <p className="text-black">View cart</p>
+                  <div className="absolute right-10">
+                    <ShoppingBagIcon fill="black" />
+                  </div>
+                </Link>
+
+                <div className="flex w-full justify-between p-12">
+                  <p>Total price</p>
+                  <p>{formatPrice(totalCartPrice)}</p>
+                </div>
+              </div>
+            )}
             {cart.map((cartItem, index) => (
               <CartCard key={index} cartItem={cartItem} />
             ))}
           </div>
-          {cart.length > 0 && (
-            <Link
-              className="flex w-full justify-center bg-black07 p-10 text-white"
-              aria-label="Go to cart"
-              href="/cart"
-              onClick={() => setIsCartOpen(false)}
-            >
-              <p>Go to cart</p>
-            </Link>
-          )}
         </div>
       )}
     </>

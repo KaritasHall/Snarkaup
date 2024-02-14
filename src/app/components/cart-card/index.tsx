@@ -4,8 +4,8 @@ import { useCart, CartItem } from "@/app/hooks/useCart";
 import { CloseButton } from "../close-button";
 import { useState } from "react";
 import { MinusIcon, PlusIcon } from "../icons";
+import { formatPrice } from "@/app/utils/format-price";
 
-// TODO: Leggja saman vöruverð f. card items og birta
 // TODO: Birta réttan variant f. viðeigandi vöru
 
 interface CartCardProps {
@@ -34,6 +34,11 @@ const CartCard = ({ cartItem }: CartCardProps) => {
     decreaseQuantity(cartProductId);
   };
 
+  // Calculate the total price of a product
+  const totalPrice = cartProduct?.lowestPrice
+    ? cartProduct.lowestPrice * cartQuantity
+    : 0;
+
   return (
     <div className="flex w-[645px] items-center justify-between py-24 font-inter">
       <div className="flex gap-16">
@@ -54,7 +59,6 @@ const CartCard = ({ cartItem }: CartCardProps) => {
           <h2 className="line-clamp-1 text-sm font-semibold leading-6 tracking-wide text-black07">
             {cartProduct.title}
           </h2>
-          {/* TODO: Hvernig set ég réttan variant f. viðeigandi vöru?? */}
           {cartItem?.product.variants && (
             <p className="text-label text-black04">
               {cartProduct.variants[0].title}
@@ -81,11 +85,11 @@ const CartCard = ({ cartItem }: CartCardProps) => {
         </div>
         {/* Shows price of single product */}
         <p className="hidden font-inter text-lg leading-6 lg:block">
-          ${cartProduct.lowestPrice}
+          {cartProduct?.lowestPrice && formatPrice(cartProduct.lowestPrice)}
         </p>
         {/* Shows the price sum of multiple items of a product*/}
         <p className="text-right font-inter text-lg font-semibold leading-6">
-          ${cartProduct.lowestPrice}
+          {formatPrice(totalPrice)}
         </p>
       </div>
     </div>
