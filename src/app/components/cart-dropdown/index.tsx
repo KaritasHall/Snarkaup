@@ -54,22 +54,30 @@ const CartDropdown = ({ isCartOpen, setIsCartOpen }: CartDropdownProps) => {
               </div>
             )}
             {cart.length > 0 && (
-              <div className="flex-col">
+              <div className="divider flex flex-col gap-12">
                 <Link
-                  className="relative flex w-full justify-center border-2 border-black05 p-10"
+                  className="relative flex w-full justify-center border-[1px] border-black04 p-10"
                   aria-label="View cart"
                   href="/cart"
                   onClick={() => setIsCartOpen(false)}
                 >
-                  <p className="text-black">View cart</p>
+                  <p className="text-base text-black">View cart</p>
                   <div className="absolute right-10">
                     <ShoppingBagIcon fill="black" />
                   </div>
                 </Link>
+                <Link
+                  className=" relative flex w-full justify-center bg-black07 p-10"
+                  aria-label="Go to checkout"
+                  href="/checkout"
+                  onClick={() => setIsCartOpen(false)}
+                >
+                  <p className="text-base text-white">Checkout</p>
+                </Link>
 
-                <div className="flex w-full justify-between p-12">
-                  <p>Total price</p>
-                  <p>{formatPrice(totalCartPrice)}</p>
+                <div className="flex w-full items-center  justify-between p-10">
+                  <p className="font-inter text-base">Total price</p>
+                  <p className="text-h6">{formatPrice(totalCartPrice)}</p>
                 </div>
               </div>
             )}

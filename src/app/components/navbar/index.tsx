@@ -15,7 +15,7 @@ const Navbar = () => {
   const totalQuantity = cart.reduce((acc, item) => acc + item.quantity, 0);
 
   return (
-    <>
+    <div>
       <nav className="flex h-fit w-full items-center justify-between px-fluid-x py-16 shadow-md lg:h-88 lg:pb-18 lg:pt-24">
         <div className="flex w-1/2 gap-18">
           <Link href="/" aria-label="Link to home page">
@@ -45,7 +45,7 @@ const Navbar = () => {
           <CartDropdown isCartOpen={isCartOpen} setIsCartOpen={setIsCartOpen} />
         )}
       </div>
-    </>
+    </div>
   );
 };
 

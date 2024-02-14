@@ -120,6 +120,6 @@ meter {
 
 @layer utilities {
   .divider {
-    @apply border-b-[1px] border-black04;
+    @apply border-b-[1px] border-grey03;
   }
 }

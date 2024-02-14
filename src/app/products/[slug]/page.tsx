@@ -1,7 +1,7 @@
 "use client";
 import { useProducts } from "@/app/hooks/useProducts";
 import SectionContainer from "@/app/components/section-container";
-import ProductCard from "@/app/components/product-card";
+import ProductCard from "@/app/components/product-cards/product-card";
 
 export default function Page({ params }: { params: { slug: string } }) {
   const { product } = useProducts({
