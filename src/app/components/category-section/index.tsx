@@ -1,7 +1,7 @@
 import React from "react";
 import { AugmentedProduct, AugmentedCategory } from "@/app/hooks/useProducts";
 import SectionContainer from "@/app/components/section-container";
-import ProductCard from "@/app/components/product-card";
+import ProductCard from "@/app/components/product-cards/product-card";
 
 interface CategorySectionProps {
   category: AugmentedCategory;

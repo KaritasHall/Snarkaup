@@ -6,7 +6,6 @@ import CartButton from "../cart-button";
 import { useState } from "react";
 import CartDropdown from "../cart-dropdown";
 import { useCart } from "@/app/hooks/useCart";
-import { formatPrice } from "@/app/utils/format-price";
 
 const Navbar = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);

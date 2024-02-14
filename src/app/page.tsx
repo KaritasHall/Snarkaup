@@ -3,7 +3,7 @@ import { useQuery } from "@apollo/client";
 import { GET_FRONT_PAGE } from "./dato/front-page-query";
 import { useProducts } from "./hooks/useProducts";
 import SectionContainer from "./components/section-container";
-import ProductCard from "./components/product-card";
+import ProductCard from "./components/product-cards/product-card";
 import { useCart } from "./hooks/useCart";
 
 export default function Home() {

@@ -1,9 +1,9 @@
-import { useCart, CartItem } from "@/app/hooks/useCart";
-import CartCard from "@/app/components/cart-card";
+import { useCart } from "@/app/hooks/useCart";
 import Link from "next/link";
 import { useRef, useEffect } from "react";
 import { ShoppingBagIcon } from "../icons/shopping-bag-icon";
 import { formatPrice } from "@/app/utils/format-price";
+import MiniCartCard from "../product-cards/mini-cart-card";
 
 type CartDropdownProps = {
   isCartOpen: boolean;
@@ -14,6 +14,7 @@ const CartDropdown = ({ isCartOpen, setIsCartOpen }: CartDropdownProps) => {
   const { cart } = useCart();
   const dropdownRef = useRef<HTMLDivElement>(null);
 
+  // Close the cart dropdown when clicking outside of it
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -73,7 +74,7 @@ const CartDropdown = ({ isCartOpen, setIsCartOpen }: CartDropdownProps) => {
               </div>
             )}
             {cart.map((cartItem, index) => (
-              <CartCard key={index} cartItem={cartItem} />
+              <MiniCartCard key={index} cartItem={cartItem} />
             ))}
           </div>
         </div>

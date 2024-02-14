@@ -1,7 +1,7 @@
 "use client";
 
 import { useCart } from "../hooks/useCart";
-import CartCard from "../components/cart-card";
+import CartCard from "../components/product-cards/cart-card";
 import SectionContainer from "../components/section-container";
 
 export default function Cart() {
