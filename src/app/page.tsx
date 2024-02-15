@@ -3,15 +3,14 @@ import { useQuery } from "@apollo/client";
 import { GET_FRONT_PAGE } from "./dato/front-page-query";
 import { useProducts } from "./hooks/useProducts";
 import SectionContainer from "./components/section-container";
-import ProductCard from "./components/product-card";
-import CartCard from "./components/cart-card";
-import { useCart, CartItem } from "./hooks/useCart";
+import ProductCard from "./components/product-cards/product-card";
+import { useCart } from "./hooks/useCart";
 
 export default function Home() {
   const { loading, error, data } = useQuery(GET_FRONT_PAGE);
 
-  const { products, product, categories, productsByCategory } = useProducts({});
-  const { cart, addToCart } = useCart();
+  const { products } = useProducts({});
+  const { addToCart } = useCart();
 
   return (
     <>
@@ -29,12 +28,6 @@ export default function Home() {
                   Add to Cart
                 </button>
               </div>
-            ))}
-          </div>
-          <div className="w-fit outline">
-            <h2 className="text-2xl font-bold">Cart</h2>
-            {cart.map((cartItem, index) => (
-              <CartCard key={index} cartItem={cartItem} />
             ))}
           </div>
         </div>

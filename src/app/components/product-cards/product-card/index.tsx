@@ -1,12 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import { AugmentedProduct } from "@/app/hooks/useProducts";
+import { formatPrice } from "@/app/utils/format-price";
 
 interface ProductCardProps {
   product: AugmentedProduct;
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
+  const productPrice = product.lowestPrice && formatPrice(product.lowestPrice);
+
   return (
     <div className="grid w-card-w grid-rows-[auto_1fr] gap-12">
       <div className="h-card-h w-full">
@@ -26,7 +29,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
         <h2 className="line-clamp-1 text-base leading-6 lg:line-clamp-3">
           {product.title}
         </h2>
-        <h3 className="text-sm leading-6">${product.lowestPrice}</h3>
+        <h3 className="text-sm leading-6">{productPrice}</h3>
       </div>
     </div>
   );
