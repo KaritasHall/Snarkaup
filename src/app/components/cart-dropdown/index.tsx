@@ -4,13 +4,19 @@ import { useRef, useEffect } from "react";
 import { ShoppingBagIcon } from "../icons/shopping-bag-icon";
 import { formatPrice } from "@/app/utils/format-price";
 import MiniCartCard from "../product-cards/mini-cart-card";
+import cx from "classnames";
 
 type CartDropdownProps = {
   isCartOpen: boolean;
   setIsCartOpen: (isOpen: boolean) => void;
+  isScrolling: boolean;
 };
 
-const CartDropdown = ({ isCartOpen, setIsCartOpen }: CartDropdownProps) => {
+const CartDropdown = ({
+  isCartOpen,
+  setIsCartOpen,
+  isScrolling,
+}: CartDropdownProps) => {
   const { cart } = useCart();
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -44,7 +50,10 @@ const CartDropdown = ({ isCartOpen, setIsCartOpen }: CartDropdownProps) => {
       {isCartOpen && (
         <div
           ref={dropdownRef}
-          className="absolute right-[63px] top-[80px] z-50 border-[1px] border-grey02 bg-white shadow-lg"
+          className={cx(
+            "z-60 fixed right-[63px] border-[1px] border-grey02 bg-white shadow-lg",
+            isScrolling ? "top-[54px]" : "top-[80px]",
+          )}
         >
           <div className="max-h-[75vh] overflow-y-auto px-8">
             {cart.length === 0 && (
