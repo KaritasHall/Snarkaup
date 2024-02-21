@@ -4,6 +4,7 @@ import { useRef, useEffect } from "react";
 import { ShoppingBagIcon } from "../icons/shopping-bag-icon";
 import { formatPrice } from "@/app/utils/format-price";
 import MiniCartCard from "../product-cards/mini-cart-card";
+import cx from "classnames";
 
 type CartDropdownProps = {
   isCartOpen: boolean;
@@ -49,8 +50,10 @@ const CartDropdown = ({
       {isCartOpen && (
         <div
           ref={dropdownRef}
-          className={`z-60 fixed right-[63px] border-[1px] border-grey02 bg-white shadow-lg
-          ${isScrolling ? "top-[54px]" : "top-[80px]"}`}
+          className={cx(
+            "z-60 fixed right-[63px] border-[1px] border-grey02 bg-white shadow-lg",
+            isScrolling ? "top-[54px]" : "top-[80px]",
+          )}
         >
           <div className="max-h-[75vh] overflow-y-auto px-8">
             {cart.length === 0 && (

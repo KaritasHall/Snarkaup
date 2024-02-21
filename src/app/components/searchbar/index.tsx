@@ -45,7 +45,6 @@ export default function SearchBar({ placeholder }: SearchBarProps) {
             onKeyDown={(e) => {
               if (e.key === "Enter") {
                 goToSearchPage();
-                console.log("Enter");
               }
             }}
             defaultValue={searchParams.get("query")?.toString()}
