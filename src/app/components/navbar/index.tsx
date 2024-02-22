@@ -3,14 +3,23 @@
 import SearchBar from "../searchbar";
 import Link from "next/link";
 import CartButton from "../cart-button";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import CartDropdown from "../cart-dropdown";
 import { useCart } from "@/app/hooks/useCart";
+import { setBodyScroll } from "@/app/utils/set-body-scroll";
 
 const Navbar = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);
+  const [hasMountedCartDropdown, setHasMountedCartDropdown] = useState(false);
   const { cart } = useCart();
+
+  const closeCart = () => {
+    setHasMountedCartDropdown(false);
+    setTimeout(() => {
+      setIsCartOpen(false);
+    }, 400);
+  };
 
   // Calculate the total quantity of items in the cart
   const totalQuantity = cart.reduce((acc, item) => acc + item.quantity, 0);
@@ -32,10 +41,14 @@ const Navbar = () => {
     };
   }, [setIsScrolling]);
 
+  useEffect(() => {
+    setBodyScroll(!isCartOpen);
+  }, [isCartOpen]);
+
   return (
     <div>
       <nav
-        className={`fixed top-0 flex w-full items-center justify-between bg-white px-fluid-x shadow-md transition-[200ms] ${
+        className={`fixed top-0 flex w-full items-center justify-between bg-white px-fluid-x shadow-md transition-[400ms] ease-in-out ${
           isScrolling ? "lg:py-10" : "lg:pb-18 lg:pt-24"
         }`}
       >
@@ -51,7 +64,7 @@ const Navbar = () => {
             <CartButton
               onClick={(e) => {
                 e.stopPropagation();
-                setIsCartOpen(!isCartOpen);
+                isCartOpen ? closeCart() : setIsCartOpen(true);
               }}
             />
             {cart.length > 0 && (
@@ -62,15 +75,14 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
-      <div className="h-0 w-0">
-        {isCartOpen && (
-          <CartDropdown
-            isCartOpen={isCartOpen}
-            setIsCartOpen={setIsCartOpen}
-            isScrolling={isScrolling}
-          />
-        )}
-      </div>
+      {isCartOpen && (
+        <CartDropdown
+          isScrolling={isScrolling}
+          closeCart={closeCart}
+          hasMountedCartDropdown={hasMountedCartDropdown}
+          setHasMountedCartDropdown={setHasMountedCartDropdown}
+        />
+      )}
     </div>
   );
 };
