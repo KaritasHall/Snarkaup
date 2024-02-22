@@ -23,6 +23,7 @@ body {
   display: grid;
   grid-template-rows: auto 1fr auto;
   padding-top: 100px;
+  background-color: #fff8e7;
 }
 
 /* Preferred box-sizing value */
@@ -122,5 +123,8 @@ meter {
 @layer utilities {
   .divider {
     @apply border-b-[1px] border-grey03;
+  }
+  .fadeIn {
+    @apply transition-[400ms] ease-in-out;
   }
 }

@@ -57,6 +57,7 @@ export function useProducts({ id, category }: UseProductsProps) {
           id: index,
           title: category.title,
           slug: encodeURI(category.title),
+          parentId: category.parentId,
         }),
       );
 

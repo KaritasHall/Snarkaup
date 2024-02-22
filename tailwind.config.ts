@@ -13,6 +13,7 @@ const config: Config = {
         green: "#38CB89",
         orange: "#FFAB00",
         red: "#FF5630",
+        white: "#FFF8E7",
         primaryBlack: "#000000",
         black07: "#141718",
         black06: "#232627",
