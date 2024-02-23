@@ -22,7 +22,7 @@ const CartDropdown = ({
   const { cart } = useCart();
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Set hasMounted to true after the component has mounted
+  // We need to keep track of when the component has mounted so animations can be applied
   useEffect(() => {
     setHasMountedCartDropdown(true);
   }, []);
@@ -57,7 +57,7 @@ const CartDropdown = ({
       <div
         ref={dropdownRef}
         className={cx(
-          "z-60 fixed right-0 min-w-[min(500px,100%)] border-[1px] border-grey02 bg-white shadow-lg transition-[400ms] ease-in-out",
+          "z-60 fadeIn fixed right-0 min-w-[min(500px,100%)] border-[1px] border-grey02 bg-white shadow-lg",
           isScrolling ? "top-[64px]" : "top-[86px]",
           hasMountedCartDropdown ? "translate-x-0" : "translate-x-full",
         )}

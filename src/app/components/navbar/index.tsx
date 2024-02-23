@@ -7,12 +7,23 @@ import { useEffect, useState } from "react";
 import CartDropdown from "../cart-dropdown";
 import { useCart } from "@/app/hooks/useCart";
 import { setBodyScroll } from "@/app/utils/set-body-scroll";
+import { MegaMenu } from "../mega-menu";
+import cx from "classnames";
 
 const Navbar = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);
   const [hasMountedCartDropdown, setHasMountedCartDropdown] = useState(false);
+  const [hasMountedMegaMenu, setHasMountedMegaMenu] = useState(false);
+  const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
   const { cart } = useCart();
+
+  const closeMegaMenu = () => {
+    setHasMountedMegaMenu(false);
+    setTimeout(() => {
+      setIsMegaMenuOpen(false);
+    }, 400);
+  };
 
   const closeCart = () => {
     setHasMountedCartDropdown(false);
@@ -48,20 +59,32 @@ const Navbar = () => {
   return (
     <div>
       <nav
-        className={`fixed top-0 flex w-full items-center justify-between bg-white px-fluid-x shadow-md transition-[400ms] ease-in-out ${
-          isScrolling ? "lg:py-10" : "lg:pb-18 lg:pt-24"
-        }`}
+        className={cx(
+          "fixed top-0 z-20 flex w-full items-center justify-between bg-white px-fluid-x transition-[400ms] ease-in-out",
+          isScrolling ? "lg:py-10" : "lg:pb-18 lg:pt-24",
+          hasMountedMegaMenu ? "shadow-none" : "shadow-md",
+        )}
       >
         <div className="flex w-1/2 gap-18">
           <Link href="/" aria-label="Link to home page">
             <h1 className="">Logo</h1>
           </Link>
-          <h2 className="">Shop</h2>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              isMegaMenuOpen ? closeMegaMenu : setIsMegaMenuOpen(true);
+            }}
+            className="text-black07"
+            aria-label="Open mega menu"
+          >
+            Shop
+          </button>
         </div>
         <div className="flex w-1/2 items-center gap-18">
           <SearchBar placeholder="What are you looking for?" />
           <div className="flex items-center gap-4">
             <CartButton
+              aria-label="Open cart dropdown"
               onClick={(e) => {
                 e.stopPropagation();
                 isCartOpen ? closeCart() : setIsCartOpen(true);
@@ -75,6 +98,16 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
+
+      {isMegaMenuOpen && (
+        <MegaMenu
+          isScrolling={isScrolling}
+          closeMegaMenu={closeMegaMenu}
+          hasMountedMegaMenu={hasMountedMegaMenu}
+          setHasMountedMegaMenu={setHasMountedMegaMenu}
+        />
+      )}
+
       {isCartOpen && (
         <CartDropdown
           isScrolling={isScrolling}

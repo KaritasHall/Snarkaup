@@ -9,10 +9,19 @@ interface CategorySectionProps {
 }
 
 function CategorySection({ category, products }: CategorySectionProps) {
+  const categoryItemCount = products?.length;
+
   return (
     <div key={category?.id}>
       <SectionContainer>
-        <h2 className="capitalize">{category?.title}</h2>
+        <div className="pb-24">
+          <h2 className="text-center text-h1 capitalize text-black06">
+            {category?.title}
+          </h2>
+          <p className="text-left text-base text-black04">
+            {categoryItemCount} items
+          </p>
+        </div>
         <div className="grid grid-cols-1 gap-64 lg:grid-cols-4">
           {products?.map((product) => (
             <ProductCard key={product.id} product={product} />
