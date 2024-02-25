@@ -4,25 +4,21 @@ import { useProducts } from "@/app/hooks/useProducts";
 import { useThrottle } from "@/app/hooks/useThrottle";
 import SectionContainer from "../components/section-container";
 import ProductGrid from "../components/product-grid";
+import { useSearchParams } from "next/navigation";
 
 // TODO: Create Search Hook, useSearch, that handles the search functionality and returns the products
 // endpoint is search/:query, example: /api/search/Eco
 
 const limit = 40;
 
-export default function SearchPage({
-  searchParams,
-}: {
-  searchParams?: {
-    query?: string;
-    page?: string;
-  };
-}) {
-  // Use useThrottle to throttle the query
-  const throttledQuery =
-    useThrottle({ value: searchParams?.query ?? "", limit: 1000 }) || "";
+export default function SearchPage() {
+  const searchParams = useSearchParams();
+  const query = searchParams.get("query");
 
-  const currentPage = Number(searchParams?.page) || 1;
+  // Use useThrottle to throttle the query
+  const throttledQuery = useThrottle({ value: query ?? "", limit: 1000 }) || "";
+
+  const currentPage = Number(searchParams.get("page")) || 1;
 
   const { products } = useProducts({});
 
@@ -34,7 +30,7 @@ export default function SearchPage({
 
   try {
     console.log({
-      value: searchParams?.query,
+      value: query,
       throttledQuery,
     });
   } catch (e) {
