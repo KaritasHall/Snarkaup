@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 
+// https://hooks-guide.netlify.app/community/useThrottle
+
 interface useThrottleProps {
   value: string;
   limit: number;

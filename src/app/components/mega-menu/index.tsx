@@ -50,8 +50,6 @@ export const MegaMenu = ({
     (category) => category.parentId == null,
   );
 
-  console.log(categories);
-
   return (
     <>
       <div
@@ -64,7 +62,7 @@ export const MegaMenu = ({
       >
         <SectionContainer>
           <div className="flex justify-between py-10">
-            <div className="grid w-full grid-cols-3 gap-18">
+            <div className="grid w-full gap-18 lg:grid-cols-3">
               {parentCategories?.map((category) => (
                 <li
                   className="list-none text-base font-semibold text-black07 transition-colors duration-200 hover:text-black04"

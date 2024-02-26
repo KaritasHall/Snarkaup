@@ -58,13 +58,13 @@ const CartDropdown = ({
         ref={dropdownRef}
         className={cx(
           "z-60 fadeIn fixed right-0 min-w-[min(500px,100%)] border-[1px] border-grey02 bg-white shadow-lg",
-          isScrolling ? "top-[64px]" : "top-[86px]",
+          isScrolling ? "top-[44px] lg:top-[64px]" : "top-[66px] lg:top-[86px]",
           hasMountedCartDropdown ? "translate-x-0" : "translate-x-full",
         )}
       >
         <div
           className={cx(
-            "overflow-y-auto px-16",
+            "overflow-y-auto px-8 sm:px-16",
             isScrolling
               ? "max-h-[calc(100dvh-64px)]"
               : "max-h-[calc(100dvh-86px)]",

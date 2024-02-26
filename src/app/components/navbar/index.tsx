@@ -108,6 +108,7 @@ const Navbar = () => {
             "mb-6 w-full lg:hidden",
             isScrolling ? "hidden" : "block",
             isMegaMenuOpen ? "hidden" : "block",
+            isCartOpen ? "hidden" : "block",
           )}
           placeholder="What are you looking for?"
         />
