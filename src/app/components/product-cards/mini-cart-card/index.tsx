@@ -38,7 +38,7 @@ const MiniCartCard = ({ cartItem }: MiniCartCardProps) => {
             )}
           </Link>
         </div>
-        <div className="flex w-[210px] flex-col gap-8">
+        <div className="flex w-fit flex-col gap-8 lg:w-[210px]">
           <h2 className="line-clamp-1 text-sm font-semibold leading-6 tracking-wide text-black07">
             {cartProduct.title}
           </h2>

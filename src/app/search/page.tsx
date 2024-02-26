@@ -1,32 +1,41 @@
 "use client";
 
 import { useProducts } from "@/app/hooks/useProducts";
+import { useThrottle } from "@/app/hooks/useThrottle";
 import SectionContainer from "../components/section-container";
 import ProductGrid from "../components/product-grid";
+import { useSearchParams } from "next/navigation";
 
-const limit = 4;
+// TODO: Create Search Hook, useSearch, that handles the search functionality and returns the products
+// endpoint is search/:query, example: /api/search/Eco
 
-import { useThrottle } from "react-use";
+const limit = 40;
 
-export default function SearchPage({
-  searchParams,
-}: {
-  searchParams?: {
-    query?: string;
-    page?: string;
-  };
-}) {
-  // TODO: Implement search functionality, use useThrottle to throttle the query
-  // Create Search Hook, useSearch, that handles the search functionality and returns the products
-  // endpoint is search/:query, example: /api/search/Eco
-  const throttledQuery = useThrottle(searchParams?.query, 3000) || "";
-  const currentPage = Number(searchParams?.page) || 1;
+export default function SearchPage() {
+  const searchParams = useSearchParams();
+  const query = searchParams.get("query");
+
+  // Use useThrottle to throttle the query
+  const throttledQuery = useThrottle({ value: query ?? "", limit: 1000 }) || "";
+
+  const currentPage = Number(searchParams.get("page")) || 1;
 
   const { products } = useProducts({});
 
+  // Checking basic search functionality with the throttled query
+  // Currently searching by title only
   const filteredProducts = products?.filter((product) =>
     product.title.toLowerCase().includes(throttledQuery.toLowerCase()),
   );
+
+  try {
+    console.log({
+      value: query,
+      throttledQuery,
+    });
+  } catch (e) {
+    console.error(e);
+  }
 
   const currentProducts = filteredProducts?.slice(
     (currentPage - 1) * limit,
