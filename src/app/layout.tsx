@@ -4,6 +4,7 @@ import { Providers } from "./providers";
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 import { Poppins, Inter } from "next/font/google";
+import { Modal } from "./components/modal";
 
 const poppins = Poppins({
   weight: ["400", "700"],
@@ -35,6 +36,7 @@ export default function RootLayout({
           <Navbar />
           {children}
           <Footer />
+          <Modal />
         </body>
       </Providers>
     </html>
