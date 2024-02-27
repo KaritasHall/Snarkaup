@@ -1,12 +1,16 @@
 import { AugmentedProduct, useProducts } from "./useProducts";
-import { useRecoilState } from "recoil";
-import { cartState } from "../cartAtom";
+import { useRecoilState, atom } from "recoil";
 import { useCallback, useEffect } from "react";
 
 export type CartItem = {
   quantity: number;
   product: AugmentedProduct;
 };
+
+const cartState = atom<CartItem[]>({
+  key: "cartState",
+  default: [],
+});
 
 export function useCart() {
   const [cart, setCart] = useRecoilState(cartState);

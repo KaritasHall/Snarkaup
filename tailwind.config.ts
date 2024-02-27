@@ -14,6 +14,7 @@ const config: Config = {
         orange: "#FFAB00",
         red: "#FF5630",
         white: "#FFF8E7",
+        pureWhite: "#FFFFFF",
         primaryBlack: "#000000",
         black07: "#141718",
         black06: "#232627",
@@ -22,7 +23,8 @@ const config: Config = {
         grey03: "#E8ECEF",
         grey02: "#F3F5F7",
         grey01: "#FEFEFE",
-
+        modalBg: "#F1E2CC",
+        modalText: "#1D1E1F",
         // Status colors
         success: "#48C546",
         danger: "#EB5454",
