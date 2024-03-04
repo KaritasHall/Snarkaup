@@ -1,10 +1,10 @@
-import { AugmentedProduct, useProducts } from "./useProducts";
+import { ListProductWithContent, useProducts } from "./useProducts";
 import { useRecoilState, atom } from "recoil";
 import { useCallback, useEffect } from "react";
 
 export type CartItem = {
   quantity: number;
-  product: AugmentedProduct;
+  product: ListProductWithContent;
 };
 
 const cartState = atom<CartItem[]>({

@@ -1,11 +1,14 @@
 import React from "react";
-import { AugmentedProduct, AugmentedCategory } from "@/app/hooks/useProducts";
+import {
+  ListProductWithContent,
+  AugmentedCategory,
+} from "@/app/hooks/useProducts";
 import SectionContainer from "@/app/components/section-container";
 import ProductCard from "@/app/components/product-cards/product-card";
 
 interface CategorySectionProps {
   category: AugmentedCategory;
-  products: AugmentedProduct[];
+  products: ListProductWithContent[];
 }
 
 function CategorySection({ category, products }: CategorySectionProps) {

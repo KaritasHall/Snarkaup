@@ -1,11 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import { AugmentedProduct } from "@/app/hooks/useProducts";
+import { ListProductWithContent } from "@/app/hooks/useProducts";
 import { formatPrice } from "@/app/utils/format-price";
 import { useCart } from "@/app/hooks/useCart";
 
 interface ProductCardProps {
-  product: AugmentedProduct;
+  product: ListProductWithContent;
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
@@ -16,7 +16,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <div className="grid w-card-w grid-rows-[auto_1fr] gap-12">
       <div className="h-card-h w-full">
-        <Link href={`/${product.slug}`}>
+        <Link href={`/products/${product.slug}`}>
           {product.listImage && (
             <Image
               src={product.listImage}

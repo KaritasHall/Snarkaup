@@ -1,16 +1,16 @@
 import { forwardRef, useState } from "react";
 
-export type Colors = "default" | "white" | "blue" | "green";
+export type Colors = "default" | "white" | "blue" | "green" | "grey";
 
 type ButtonProps = {
-  shape?: "soft" | "square" | "none";
+  shape?: "soft" | "square" | "none" | "circular";
   stretch?: boolean;
   color?: Colors;
   icon?: ({ fill }: { fill?: "black" | "white" }) => JSX.Element;
   label?: string;
   className?: string;
-  onClick?: () => void;
-  ariaLabel?: string;
+  onClick: () => void;
+  ariaLabel: string;
 };
 
 // Tailwind classes for ButtonProps types (shape/color)
@@ -18,6 +18,7 @@ const buttonShapeClass = {
   soft: "rounded-full",
   square: "rounded-lg",
   none: "",
+  circular: "rounded-full px-8 py-8",
 };
 
 const buttonColorClass: Record<Colors, string> = {
@@ -25,6 +26,7 @@ const buttonColorClass: Record<Colors, string> = {
   white: "bg-white text-black07 hover:bg-black07 hover:text-white",
   blue: "bg-blue text-white hover:bg-white hover:text-black07",
   green: "bg-green text-white hover:bg-white hover:text-black07",
+  grey: "bg-grey03 text-black07 hover:bg-black07 hover:text-white",
 };
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
