@@ -4,6 +4,7 @@ import { useCart, CartItem } from "@/app/hooks/useCart";
 import { CloseButton } from "@/app/components/close-button";
 import { formatPrice } from "@/app/utils/format-price";
 import { ItemCounter } from "../../item-counter";
+import { ProductWithContent } from "@/app/hooks/useProducts";
 
 // TODO: Birta réttan variant f. viðeigandi vöru
 

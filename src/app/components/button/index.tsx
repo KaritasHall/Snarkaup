@@ -18,7 +18,7 @@ const buttonShapeClass = {
   soft: "rounded-full",
   square: "rounded-lg",
   none: "",
-  circular: "rounded-full px-8 py-8",
+  circular: "rounded-full px-6 py-6 lg:px-8 lg:py-8",
 };
 
 const buttonColorClass: Record<Colors, string> = {
@@ -50,8 +50,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         onClick={onClick}
         aria-label={ariaLabel}
-        className={`flex items-center justify-center gap-4 px-56 py-12 text-sm outline 
-        outline-1 outline-inherit lg:gap-8 lg:text-base 
+        className={`flex items-center justify-center gap-4 py-12 text-sm outline outline-1 
+        outline-inherit lg:gap-8 lg:px-56 lg:text-base 
         ${buttonShapeClass[shape]} 
         ${buttonColorClass[color]}
         ${stretch ? "w-full py-8" : ""}
