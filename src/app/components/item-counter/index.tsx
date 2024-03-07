@@ -13,7 +13,6 @@ export const ItemCounter = ({
   productId,
   productVariantId,
 }: ItemCounterProps) => {
-  console.log(productId, productVariantId);
   const { addToCart, showItemQuantity, decreaseQuantity } = useCart();
 
   const cartQuantity = showItemQuantity(productVariantId);
