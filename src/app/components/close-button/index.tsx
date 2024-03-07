@@ -18,7 +18,7 @@ export const CloseButton = ({ onClick, label }: CloseButtonProps) => {
       <CloseIcon hover={hovering} />
       {label && (
         <h4
-          className={`font-inter text-sm font-semibold tracking-wide text-black04 ${
+          className={`text-sm font-semibold tracking-wide text-black04 ${
             hovering ? "text-black07" : ""
           }`}
         >

@@ -26,7 +26,7 @@ const CartCard = ({ cartItem }: CartCardProps) => {
     : 0;
 
   return (
-    <div className="flex w-[645px] items-center justify-between py-24 font-inter">
+    <div className="flex w-[645px] items-center justify-between py-24">
       <div className="flex gap-16">
         <div className="h-96 w-80">
           <Link href={`/${cartItem?.product.slug}`}>
@@ -63,11 +63,11 @@ const CartCard = ({ cartItem }: CartCardProps) => {
           productId={cartProduct.id}
         />
         {/* Shows price of single product */}
-        <p className="hidden font-inter text-lg leading-6 lg:block">
+        <p className="hidden text-lg leading-6 lg:block">
           {formatPrice(cartItemVariant?.price ?? 0)}
         </p>
         {/* Shows the price sum of multiple items of a product*/}
-        <p className="text-right font-inter text-lg font-semibold leading-6">
+        <p className="text-right text-lg font-semibold leading-6">
           {formatPrice(totalVariantPrice)}
         </p>
       </div>

@@ -53,18 +53,18 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
             <h2 className="font-poppins text-h4 leading-10 text-black lg:pb-16 lg:text-h3 lg:leading-normal">
               {product?.title}
             </h2>
-            <p className="font-inter text-base text-black04">
-              {product?.description}
-            </p>
-            {/* Variant price! */}
-            <h3 className="">{formatPrice(selectedVariant?.price ?? price)}</h3>
+            <p className="text-base text-black04">{product?.description}</p>
+
+            <h3 className="font-poppins text-h6">
+              {formatPrice(selectedVariant?.price ?? price)}
+            </h3>
           </div>
 
           <div className="flex w-fit flex-col gap-8 pb-32">
             {/* TODO:Should be able to display variant type (color, size etc.) */}
-            <p className="font-inter text-base text-black04">Choose variant:</p>
+            <p className="text-base text-black04">Choose variant:</p>
             <select
-              className="rounded-md bg-inherit px-6 py-8 shadow-md"
+              className="rounded-md bg-inherit px-10 py-8 shadow-md"
               onChange={(e) => {
                 const selectedVariant = product.variants.find(
                   (variant) => variant.id === Number(e.target.value),
@@ -82,22 +82,14 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
             </select>
           </div>
 
-          <div className="flex items-center gap-16">
-            <div>
-              <ItemCounter
-                productId={product.id ?? 0}
-                productVariantId={selectedVariant?.id ?? 0}
-              />
-            </div>
-            <Button
-              ariaLabel="Add to Cart"
-              label="Add to Cart"
-              stretch={true}
-              onClick={() =>
-                addToCart(product.id ?? 0, selectedVariant?.id ?? 0, 1)
-              }
-            />
-          </div>
+          <Button
+            ariaLabel="Add to Cart"
+            label="Add to Cart"
+            stretch={true}
+            onClick={() =>
+              addToCart(product.id ?? 0, selectedVariant?.id ?? 0, 1)
+            }
+          />
         </div>
       </div>
     </SectionContainer>

@@ -26,7 +26,7 @@ const MiniCartCard = ({ cartItem }: MiniCartCardProps) => {
     : 0;
 
   return (
-    <div className="flex justify-between gap-[60px] py-24 font-inter">
+    <div className="flex justify-between gap-[60px] py-24">
       <div className="flex gap-16">
         <div className="h-96 w-80">
           <Link href={`/${cartItem?.product.slug}`}>
@@ -56,7 +56,7 @@ const MiniCartCard = ({ cartItem }: MiniCartCardProps) => {
       </div>
 
       <div className="flex w-full flex-col items-end gap-12">
-        <p className="w-full text-right font-inter text-sm font-semibold leading-6">
+        <p className="w-full text-right text-sm font-semibold leading-6">
           {formatPrice(totalVariantPrice)}
         </p>
         <div className="flex w-fit">

@@ -99,7 +99,7 @@ const CartDropdown = ({
               </Link>
 
               <div className="flex w-full items-center justify-evenly py-10">
-                <p className="w-full font-inter text-base">Total price</p>
+                <p className="w-full text-base">Total price</p>
                 <p className="w-full text-right text-h6">
                   {formatPrice(totalCartPrice)}
                 </p>

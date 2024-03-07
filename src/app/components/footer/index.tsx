@@ -7,7 +7,7 @@ const Footer = () => {
   const { setIsModalOpen } = useHelloModal();
 
   return (
-    <div className="bg-black07 px-fluid-x py-48 font-inter text-sm text-pureWhite lg:text-base">
+    <div className="bg-black07 px-fluid-x py-48 text-sm text-pureWhite lg:text-base">
       <footer className="flex h-fit w-full flex-col items-center gap-40 lg:gap-[57px]">
         <div className="divider flex w-full flex-col gap-40 lg:flex-row lg:justify-between lg:pb-[57px]">
           <div className="flex flex-col items-center gap-18 lg:flex-row">
