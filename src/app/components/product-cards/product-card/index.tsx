@@ -34,14 +34,6 @@ const ProductCard = ({ product }: ProductCardProps) => {
         </h2>
         <h3 className="text-sm leading-6">{productPrice}</h3>
       </div>
-      {/* TODO:Remove button after testing */}
-      <button
-        className="rounded-md bg-grey02 p-4 text-black07"
-        key={product.id}
-        onClick={() => addToCart(product?.id ?? 0, 1)}
-      >
-        Add to Cart
-      </button>
     </div>
   );
 };

@@ -13,13 +13,16 @@ const MiniCartCard = ({ cartItem }: MiniCartCardProps) => {
   const { removeFromCart, showItemQuantity } = useCart();
 
   const cartProduct = cartItem?.product;
-  const cartProductId = cartItem?.product.id;
+  const cartProductVariantId = cartItem?.variantId;
+  const cartItemVariant = cartProduct?.variants.find(
+    (variant) => variant.id === cartProductVariantId,
+  );
 
-  const cartQuantity = showItemQuantity(cartProductId);
+  const cartQuantity = showItemQuantity(cartProductVariantId);
 
   // Calculate the total price of a product
-  const totalPrice = cartProduct?.lowestPrice
-    ? cartProduct.lowestPrice * cartQuantity
+  const totalVariantPrice = cartItemVariant?.price
+    ? cartItemVariant.price * cartQuantity
     : 0;
 
   return (
@@ -42,22 +45,23 @@ const MiniCartCard = ({ cartItem }: MiniCartCardProps) => {
           <h2 className="line-clamp-1 text-sm font-semibold leading-6 tracking-wide text-black07">
             {cartProduct.title}
           </h2>
-          {cartItem?.product.variants && (
-            <p className="text-label text-black04">
-              {cartProduct.variants[0].title}
-            </p>
+          {cartItemVariant && (
+            <p className="text-label text-black04">{cartItemVariant.title}</p>
           )}
-          <ItemCounter productId={cartProductId} />
+          <ItemCounter
+            productVariantId={cartProductVariantId}
+            productId={cartProduct.id}
+          />
         </div>
       </div>
 
       <div className="flex w-full flex-col items-end gap-12">
         <p className="w-full text-right font-inter text-sm font-semibold leading-6">
-          {formatPrice(totalPrice)}
+          {formatPrice(totalVariantPrice)}
         </p>
         <div className="flex w-fit">
           <CloseButton
-            onClick={() => removeFromCart(cartProductId)}
+            onClick={() => removeFromCart(cartProductVariantId)}
             aria-label="Remove product from cart"
           />
         </div>

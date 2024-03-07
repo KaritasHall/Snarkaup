@@ -5,6 +5,7 @@ import { useCallback, useEffect } from "react";
 export type CartItem = {
   quantity: number;
   product: ListProductWithContent;
+  variantId: number;
 };
 
 const cartState = atom<CartItem[]>({
@@ -17,10 +18,14 @@ export function useCart() {
 
   const { products } = useProducts({});
 
-  function addToCart(productId: number, quantityChange: number) {
+  function addToCart(
+    productId: number,
+    variantId: number,
+    quantityChange: number,
+  ) {
     setCart((currentCart) => {
       const productIndex = currentCart.findIndex(
-        (item) => item.product.id === productId,
+        (item) => item.variantId === variantId,
       );
 
       // Product found in the cart, update the quantity
@@ -33,6 +38,7 @@ export function useCart() {
           updatedCart[productIndex] = {
             ...updatedCart[productIndex],
             quantity: newQuantity,
+            variantId,
           };
           // Remove the item if the quantity would drop to 0 or below
         } else {
@@ -52,14 +58,17 @@ export function useCart() {
         }
         // Find the product in the list to ensure it exists before adding
         const product = products?.find((product) => product.id === productId);
-        if (!product) {
+        const productVariant = product?.variants.find(
+          (variant) => variant.id === variantId,
+        );
+        if (!product || !productVariant) {
           // Product not found in the product list, throw an error
           throw new Error(`Product with ID ${productId} not found`);
         }
 
         const updatedCart = [
           ...currentCart,
-          { product, quantity: quantityChange },
+          { product, quantity: quantityChange, variantId },
         ];
         // Add the new product with the given quantity
         updateLocalstorageCart(updatedCart);
@@ -68,14 +77,14 @@ export function useCart() {
     });
   }
 
-  function decreaseQuantity(productId: number) {
+  function decreaseQuantity(variantId: number) {
     setCart((currentCart) => {
       const cartItemIndex = currentCart.findIndex(
-        (item) => item.product.id === productId,
+        (item) => item.variantId === variantId,
       );
       if (cartItemIndex === -1) {
         // Item not found in the cart, no action needed
-        console.warn(`Product with ID ${productId} not found in the cart.`);
+        console.warn(`Product with ID ${variantId} not found in the cart.`);
         return currentCart;
       }
 
@@ -99,10 +108,10 @@ export function useCart() {
   }
 
   // Remove a product from the cart
-  function removeFromCart(productId: number) {
+  function removeFromCart(variantId: number) {
     setCart((currentCart) => {
       const updatedCart = currentCart.filter(
-        (item) => item.product.id !== productId,
+        (item) => item.variantId !== variantId,
       );
 
       updateLocalstorageCart(updatedCart);
@@ -111,8 +120,8 @@ export function useCart() {
   }
 
   // Show item quantity in cart
-  function showItemQuantity(productId: number) {
-    const cartItem = cart.find((item) => item.product.id === productId);
+  function showItemQuantity(variantId: number) {
+    const cartItem = cart.find((item) => item.variantId === variantId);
     return cartItem ? cartItem.quantity : 0;
   }
 

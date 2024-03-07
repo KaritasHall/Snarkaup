@@ -6,24 +6,29 @@ import { MinusIcon, PlusIcon } from "../icons";
 
 interface ItemCounterProps {
   productId: number;
+  productVariantId: number;
 }
 
-export const ItemCounter = ({ productId }: ItemCounterProps) => {
+export const ItemCounter = ({
+  productId,
+  productVariantId,
+}: ItemCounterProps) => {
+  console.log(productId, productVariantId);
   const { addToCart, showItemQuantity, decreaseQuantity } = useCart();
 
-  const cartQuantity = showItemQuantity(productId);
+  const cartQuantity = showItemQuantity(productVariantId);
   const [quantity, setQuantity] = useState<number>(cartQuantity);
 
   const incrementQuantity = () => {
     const newQuantity = quantity + 1;
     setQuantity(newQuantity);
-    addToCart(productId, 1);
+    addToCart(productId, productVariantId, 1);
   };
 
   const decrementQuantity = () => {
     const newQuantity = quantity - 1;
     setQuantity(newQuantity);
-    decreaseQuantity(productId);
+    decreaseQuantity(productVariantId);
   };
 
   return (

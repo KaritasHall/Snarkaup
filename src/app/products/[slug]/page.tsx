@@ -6,7 +6,7 @@ import { useCart } from "@/app/hooks/useCart";
 import { formatPrice } from "@/app/utils/format-price";
 import { ProductCarousel } from "@/app/components/product-carousel";
 import { ItemCounter } from "@/app/components/item-counter";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ProductWithContent } from "@/app/hooks/useProducts";
 
 // TODO: Uppfæra cartCard til að sýna réttan variant með réttu verði
@@ -16,10 +16,14 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
     id: params.slug,
   });
   const { addToCart } = useCart();
-  const productWithContent = product as ProductWithContent;
-  const [selectedVariant, setSelectedVariant] = useState(
-    productWithContent?.variants[0],
-  );
+
+  const [selectedVariant, setSelectedVariant] = useState(product?.variants[0]);
+
+  useEffect(() => {
+    if (product && product.variants.length > 0 && !selectedVariant) {
+      setSelectedVariant(product.variants[0]);
+    }
+  }, [product]);
 
   // Keeping track of the selected variant for price update
   const handleVariantChange = (variant: ProductWithContent["variants"][0]) => {
@@ -32,8 +36,6 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
   if (!product) {
     return null;
   }
-
-  // console.log(product?.variants);
 
   return (
     <SectionContainer>
@@ -82,13 +84,18 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
 
           <div className="flex items-center gap-16">
             <div>
-              <ItemCounter productId={product?.id ?? 0} />
+              <ItemCounter
+                productId={product.id ?? 0}
+                productVariantId={selectedVariant?.id ?? 0}
+              />
             </div>
             <Button
               ariaLabel="Add to Cart"
               label="Add to Cart"
               stretch={true}
-              onClick={() => addToCart(product?.id ?? 0, 1)}
+              onClick={() =>
+                addToCart(product.id ?? 0, selectedVariant?.id ?? 0, 1)
+              }
             />
           </div>
         </div>
