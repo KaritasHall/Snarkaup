@@ -7,16 +7,19 @@ import {
   Category,
 } from "@prisma/client";
 
-export interface AugmentedProduct extends Product {
+export interface ProductWithContent extends Product {
   content: ProductContent[];
   variants: ProductVariant[];
+}
+
+export interface ListProductWithContent extends ProductWithContent {
   listImage?: string;
   lowestPrice?: number;
 }
 
 export interface AugmentedCategory extends Category {
   children?: AugmentedCategory[];
-  products?: AugmentedProduct[];
+  products?: ListProductWithContent[];
 }
 
 interface UseProductsProps {
@@ -38,7 +41,7 @@ export function useProducts({ id, category }: UseProductsProps) {
       const data = await res.json();
 
       // Augment the data with the list image
-      return augmentProductsList(data);
+      return prepareForListDisplay(data);
     },
   });
 
@@ -74,7 +77,7 @@ export function useProducts({ id, category }: UseProductsProps) {
     queryFn: async () => {
       const res = await fetch("/api/products/" + id);
       const data = await res.json();
-      return data as AugmentedProduct;
+      return data as ProductWithContent;
     },
     enabled: id != null,
   });
@@ -96,19 +99,21 @@ export function useProducts({ id, category }: UseProductsProps) {
 
   // Extract products from categories and their children
   const extractProducts = useMemo(() => {
-    const extract = (category: AugmentedCategory): AugmentedProduct[] => {
+    const extract = (category: AugmentedCategory): ListProductWithContent[] => {
       const directProducts = category.products || [];
       const childrenProducts = category.children
         ? category.children.flatMap((child) => extract(child))
         : [];
 
-      return augmentProductsList([...directProducts, ...childrenProducts]);
+      return prepareForListDisplay([...directProducts, ...childrenProducts]);
     };
 
     return productsByCategory ? extract(productsByCategory) : [];
   }, [productsByCategory]);
 
-  function augmentProductsList(products: AugmentedProduct[]) {
+  function prepareForListDisplay(
+    products: ProductWithContent[],
+  ): ListProductWithContent[] {
     return products.map((product) => ({
       ...product,
       listImage: product.content[0].listUrl,

@@ -32,7 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Providers>
-        <body className={`${poppins.variable} ${inter.variable} bg-lightGray`}>
+        <body className={`${poppins.variable} ${inter.variable} font-inter`}>
           <Navbar />
           {children}
           <Footer />

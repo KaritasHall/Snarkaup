@@ -28,15 +28,6 @@ export default function SearchPage() {
     product.title.toLowerCase().includes(throttledQuery.toLowerCase()),
   );
 
-  try {
-    console.log({
-      value: query,
-      throttledQuery,
-    });
-  } catch (e) {
-    console.error(e);
-  }
-
   const currentProducts = filteredProducts?.slice(
     (currentPage - 1) * limit,
     currentPage * limit,

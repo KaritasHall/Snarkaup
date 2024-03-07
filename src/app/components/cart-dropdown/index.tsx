@@ -57,7 +57,7 @@ const CartDropdown = ({
       <div
         ref={dropdownRef}
         className={cx(
-          "z-60 fadeIn fixed right-0 min-w-[min(500px,100%)] border-[1px] border-grey02 bg-white shadow-lg",
+          "fadeIn fixed right-0 z-[60] min-w-[min(500px,100%)] border-[1px] border-grey02 bg-white shadow-lg",
           isScrolling ? "top-[44px] lg:top-[64px]" : "top-[66px] lg:top-[86px]",
           hasMountedCartDropdown ? "translate-x-0" : "translate-x-full",
         )}
@@ -99,7 +99,7 @@ const CartDropdown = ({
               </Link>
 
               <div className="flex w-full items-center justify-evenly py-10">
-                <p className="w-full font-inter text-base">Total price</p>
+                <p className="w-full text-base">Total price</p>
                 <p className="w-full text-right text-h6">
                   {formatPrice(totalCartPrice)}
                 </p>

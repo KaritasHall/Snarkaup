@@ -1,7 +1,7 @@
 import ProductCard from "@/app/components/product-cards/product-card";
-import { AugmentedProduct } from "@/app/hooks/useProducts";
+import { ListProductWithContent } from "@/app/hooks/useProducts";
 
-const ProductGrid = ({ products }: { products: AugmentedProduct[] }) => {
+const ProductGrid = ({ products }: { products: ListProductWithContent[] }) => {
   return (
     <div className="flex justify-center">
       <div className="grid grid-cols-1 justify-evenly gap-x-[84px] gap-y-24 md:grid-cols-2 lg:grid-cols-3 lg:gap-y-40">

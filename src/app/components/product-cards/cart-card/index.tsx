@@ -5,8 +5,6 @@ import { CloseButton } from "@/app/components/close-button";
 import { formatPrice } from "@/app/utils/format-price";
 import { ItemCounter } from "../../item-counter";
 
-// TODO: Birta réttan variant f. viðeigandi vöru
-
 interface CartCardProps {
   cartItem: CartItem;
 }
@@ -15,17 +13,20 @@ const CartCard = ({ cartItem }: CartCardProps) => {
   const { removeFromCart, showItemQuantity } = useCart();
 
   const cartProduct = cartItem?.product;
-  const cartProductId = cartItem?.product.id;
+  const cartProductVariantId = cartItem?.variantId;
+  const cartItemVariant = cartProduct?.variants.find(
+    (variant) => variant.id === cartProductVariantId,
+  );
 
-  const cartQuantity = showItemQuantity(cartProductId);
+  const cartQuantity = showItemQuantity(cartProductVariantId);
 
   // Calculate the total price of a product
-  const totalPrice = cartProduct?.lowestPrice
-    ? cartProduct.lowestPrice * cartQuantity
+  const totalVariantPrice = cartItemVariant?.price
+    ? cartItemVariant.price * cartQuantity
     : 0;
 
   return (
-    <div className="flex w-[645px] items-center justify-between py-24 font-inter">
+    <div className="flex w-[645px] items-center justify-between py-24">
       <div className="flex gap-16">
         <div className="h-96 w-80">
           <Link href={`/${cartItem?.product.slug}`}>
@@ -46,25 +47,28 @@ const CartCard = ({ cartItem }: CartCardProps) => {
           </h2>
           {cartItem?.product.variants && (
             <p className="text-label text-black04">
-              {cartProduct.variants[0].title}
+              {cartItemVariant?.title ?? ""}
             </p>
           )}
           <CloseButton
-            onClick={() => removeFromCart(cartProductId)}
+            onClick={() => removeFromCart(cartProductVariantId)}
             label="Remove"
           />
         </div>
       </div>
 
       <div className="grid grid-cols-3 items-center gap-[60px]">
-        <ItemCounter productId={cartProductId} />
+        <ItemCounter
+          productVariantId={cartProductVariantId}
+          productId={cartProduct.id}
+        />
         {/* Shows price of single product */}
-        <p className="hidden font-inter text-lg leading-6 lg:block">
-          {cartProduct?.lowestPrice && formatPrice(cartProduct.lowestPrice)}
+        <p className="hidden text-lg leading-6 lg:block">
+          {formatPrice(cartItemVariant?.price ?? 0)}
         </p>
         {/* Shows the price sum of multiple items of a product*/}
-        <p className="text-right font-inter text-lg font-semibold leading-6">
-          {formatPrice(totalPrice)}
+        <p className="text-right text-lg font-semibold leading-6">
+          {formatPrice(totalVariantPrice)}
         </p>
       </div>
     </div>

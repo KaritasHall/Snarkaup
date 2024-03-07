@@ -17,11 +17,11 @@ const LinkComponent = ({
   return (
     <Link href={href}>
       <div
-        className={`font-inter group flex w-fit items-center gap-4 border-b-[1px] border-solid text-sm lg:text-base
+        className={`group flex w-fit items-center gap-4 border-b-[1px] border-solid text-sm lg:text-base
         ${
           color === "white"
             ? "border-white text-white"
-            : "text-black07 border-black07"
+            : "border-black07 text-black07"
         }`}
       >
         <div

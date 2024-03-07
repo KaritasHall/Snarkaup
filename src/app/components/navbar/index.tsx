@@ -60,7 +60,7 @@ const Navbar = () => {
     <div>
       <nav
         className={cx(
-          "fixed top-0 z-20 flex w-full flex-col gap-16 bg-white px-fluid-x py-6 pt-12 font-inter transition-[400ms] ease-in-out lg:py-0",
+          "fixed top-0 z-20 flex w-full flex-col gap-16 bg-white px-fluid-x py-6 pt-12 transition-[400ms] ease-in-out lg:py-0",
           isScrolling ? "lg:py-10" : "lg:pb-18 lg:pt-24",
           hasMountedMegaMenu ? "shadow-none" : "shadow-md",
         )}
