@@ -26,7 +26,7 @@ const CartCard = ({ cartItem }: CartCardProps) => {
     : 0;
 
   return (
-    <div className="flex w-[645px] items-center justify-between py-24">
+    <div className="divider-dark flex w-full py-24 lg:w-[55vw] lg:items-center lg:justify-between">
       <div className="flex gap-16">
         <div className="h-96 w-80">
           <Link href={`/${cartItem?.product.slug}`}>
@@ -41,8 +41,8 @@ const CartCard = ({ cartItem }: CartCardProps) => {
             )}
           </Link>
         </div>
-        <div className="flex w-[210px] flex-col gap-8">
-          <h2 className="line-clamp-1 text-sm font-semibold leading-6 tracking-wide text-black07">
+        <div className="flex flex-col gap-8">
+          <h2 className="line-clamp-1 w-[150px] text-sm font-semibold leading-6 tracking-wide text-black07 lg:line-clamp-none lg:w-full">
             {cartProduct.title}
           </h2>
           {cartItem?.product.variants && (
@@ -53,23 +53,36 @@ const CartCard = ({ cartItem }: CartCardProps) => {
           <CloseButton
             onClick={() => removeFromCart(cartProductVariantId)}
             label="Remove"
+            className="hidden lg:flex"
           />
+          <div className="lg:hidden">
+            <ItemCounter
+              productVariantId={cartProductVariantId}
+              productId={cartProduct.id}
+            />
+          </div>
         </div>
       </div>
 
-      <div className="grid grid-cols-3 items-center gap-[60px]">
-        <ItemCounter
-          productVariantId={cartProductVariantId}
-          productId={cartProduct.id}
-        />
+      <div className="flex flex-col items-end lg:grid lg:grid-cols-3 lg:items-center lg:gap-[60px]">
+        <div className="hidden lg:block">
+          <ItemCounter
+            productVariantId={cartProductVariantId}
+            productId={cartProduct.id}
+          />
+        </div>
         {/* Shows price of single product */}
         <p className="hidden text-lg leading-6 lg:block">
           {formatPrice(cartItemVariant?.price ?? 0)}
         </p>
         {/* Shows the price sum of multiple items of a product*/}
-        <p className="text-right text-lg font-semibold leading-6">
+        <p className="text-right text-sm font-semibold leading-6 lg:text-lg">
           {formatPrice(totalVariantPrice)}
         </p>
+        <CloseButton
+          onClick={() => removeFromCart(cartProductVariantId)}
+          className="flex lg:hidden"
+        />
       </div>
     </div>
   );
