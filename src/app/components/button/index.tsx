@@ -9,7 +9,7 @@ type ButtonProps = {
   icon?: ({ fill }: { fill?: "black" | "white" }) => JSX.Element;
   label?: string;
   className?: string;
-  onClick: () => void;
+  onClick?: () => void;
   ariaLabel: string;
 };
 
