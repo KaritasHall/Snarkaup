@@ -26,7 +26,7 @@ const CartCard = ({ cartItem }: CartCardProps) => {
     : 0;
 
   return (
-    <div className="divider-dark flex w-full py-24 lg:w-[55vw] lg:items-center lg:justify-between">
+    <div className="divider-dark flex w-full py-24 lg:items-center lg:justify-between xl:w-[55vw]">
       <div className="flex gap-16">
         <div className="h-96 w-80">
           <Link href={`/${cartItem?.product.slug}`}>
@@ -42,7 +42,7 @@ const CartCard = ({ cartItem }: CartCardProps) => {
           </Link>
         </div>
         <div className="flex flex-col gap-8">
-          <h2 className="line-clamp-1 w-[150px] text-sm font-semibold leading-6 tracking-wide text-black07 lg:line-clamp-none lg:w-full">
+          <h2 className="line-clamp-1 w-[150px] text-sm font-semibold leading-6 tracking-wide text-black07 xl:line-clamp-none xl:w-full">
             {cartProduct.title}
           </h2>
           {cartItem?.product.variants && (
@@ -53,9 +53,9 @@ const CartCard = ({ cartItem }: CartCardProps) => {
           <CloseButton
             onClick={() => removeFromCart(cartProductVariantId)}
             label="Remove"
-            className="hidden lg:flex"
+            className="hidden sm:flex"
           />
-          <div className="lg:hidden">
+          <div className="sm:hidden">
             <ItemCounter
               productVariantId={cartProductVariantId}
               productId={cartProduct.id}
@@ -64,15 +64,15 @@ const CartCard = ({ cartItem }: CartCardProps) => {
         </div>
       </div>
 
-      <div className="flex flex-col items-end lg:grid lg:grid-cols-3 lg:items-center lg:gap-[60px]">
-        <div className="hidden lg:block">
+      <div className="flex flex-col items-end sm:grid sm:grid-cols-3 sm:items-center sm:gap-[60px]">
+        <div className="hidden sm:block">
           <ItemCounter
             productVariantId={cartProductVariantId}
             productId={cartProduct.id}
           />
         </div>
         {/* Shows price of single product */}
-        <p className="hidden text-lg leading-6 lg:block">
+        <p className="hidden text-lg leading-6 sm:block">
           {formatPrice(cartItemVariant?.price ?? 0)}
         </p>
         {/* Shows the price sum of multiple items of a product*/}
@@ -81,7 +81,7 @@ const CartCard = ({ cartItem }: CartCardProps) => {
         </p>
         <CloseButton
           onClick={() => removeFromCart(cartProductVariantId)}
-          className="flex lg:hidden"
+          className="flex sm:hidden"
         />
       </div>
     </div>
