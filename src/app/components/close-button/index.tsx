@@ -10,7 +10,7 @@ type CloseButtonProps = {
 export const CloseButton = ({
   onClick,
   label,
-  className,
+  className = "",
 }: CloseButtonProps) => {
   const [hovering, setHovering] = useState(false);
   return (
