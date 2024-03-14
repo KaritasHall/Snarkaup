@@ -8,10 +8,11 @@ import { ProductCarousel } from "@/app/components/product-carousel";
 import { ItemCounter } from "@/app/components/item-counter";
 import { useEffect, useState } from "react";
 import { ProductWithContent } from "@/app/hooks/useProducts";
-
-// TODO: Uppfæra cartCard til að sýna réttan variant með réttu verði
+import { ToastNotification } from "@/app/components/toast-notification";
 
 export default function ProductPage({ params }: { params: { slug: string } }) {
+  const [toastVisible, setToastVisible] = useState(false);
+  const [message, setMessage] = useState("");
   const { product } = useProducts({
     id: params.slug,
   });
@@ -36,6 +37,16 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
   if (!product) {
     return null;
   }
+
+  const handleAddToCart = (
+    productId: number,
+    variantId: number,
+    quantity: number,
+  ) => {
+    addToCart(productId, variantId, quantity);
+    setMessage("Item added to cart");
+    setToastVisible(true);
+  };
 
   return (
     <SectionContainer>
@@ -87,8 +98,17 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
             label="Add to Cart"
             stretch={true}
             onClick={() =>
-              addToCart(product.id ?? 0, selectedVariant?.id ?? 0, 1)
+              handleAddToCart(
+                product.id,
+                selectedVariant?.id ?? product.variants[0].id,
+                1,
+              )
             }
+          />
+          <ToastNotification
+            message={message}
+            isVisible={toastVisible}
+            onClose={() => setToastVisible(false)}
           />
         </div>
       </div>

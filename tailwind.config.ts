@@ -90,6 +90,10 @@ const config: Config = {
         "card-w": "clamp(9.5rem, 7.079rem + 10.329vw, 16.375rem)",
         "card-h": "clamp(12.625rem, 9.368rem + 13.897vw, 21.875rem)",
       },
+      animation: {
+        slideInFromRight:
+          "slideInFromRight 350ms cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+      },
     },
   },
 
