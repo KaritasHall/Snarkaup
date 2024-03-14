@@ -1,10 +1,11 @@
 import { useCart } from "@/app/hooks/useCart";
 import Link from "next/link";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 import { ShoppingBagIcon } from "../icons/shopping-bag-icon";
 import { formatPrice } from "@/app/utils/format-price";
 import MiniCartCard from "../product-cards/mini-cart-card";
 import cx from "classnames";
+import { calculateTotalCartPrice } from "@/app/utils/total-cart-price";
 
 type CartDropdownProps = {
   isScrolling: boolean;
@@ -46,11 +47,7 @@ const CartDropdown = ({
   }, []);
 
   // Calculate the total price of all items in the cart
-  const totalCartPrice = cart.reduce(
-    (acc, item) => acc + (item?.product?.lowestPrice ?? 0) * item.quantity,
-
-    0,
-  );
+  const totalCartPrice = calculateTotalCartPrice(cart);
 
   return (
     <>

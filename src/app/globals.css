@@ -124,6 +124,10 @@ meter {
   .divider {
     @apply border-b-[1px] border-grey03;
   }
+  .divider-dark {
+    @apply border-b-[1px] border-black07;
+  }
+
   .fadeIn {
     @apply transition-[400ms] ease-in-out;
   }
