@@ -34,15 +34,14 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
   const image = product?.content;
   const price = product?.variants[0].price ?? 0;
 
-  if (!product) {
-    return null;
-  }
-
   const handleAddToCart = (
-    productId: number,
-    variantId: number,
+    productId: number | undefined,
+    variantId: number | undefined,
     quantity: number,
   ) => {
+    if (!productId || !variantId) {
+      return;
+    }
     addToCart(productId, variantId, quantity);
     setMessage("Item added to cart");
     setToastVisible(true);
@@ -101,50 +100,19 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
               label="Add to Cart"
               stretch={true}
               onClick={() =>
-                addToCart(product?.id ?? 0, selectedVariant?.id ?? 0, 1)
+                handleAddToCart(
+                  product?.id,
+                  selectedVariant?.id ?? product?.variants[0].id,
+                  1,
+                )
               }
             />
+            <ToastNotification
+              message={message}
+              isVisible={toastVisible}
+              onClose={() => setToastVisible(false)}
+            />
           </div>
-
-          <div className="flex w-fit flex-col gap-8 pb-32">
-            {/* TODO:Should be able to display variant type (color, size etc.) */}
-            <p className="text-base text-black04">Choose variant:</p>
-            <select
-              className="rounded-md bg-inherit px-10 py-8 shadow-md"
-              onChange={(e) => {
-                const selectedVariant = product.variants.find(
-                  (variant) => variant.id === Number(e.target.value),
-                );
-                if (selectedVariant) {
-                  handleVariantChange(selectedVariant);
-                }
-              }}
-            >
-              {product?.variants.map((variant) => (
-                <option key={variant.id} value={variant.id}>
-                  {variant.title}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <Button
-            ariaLabel="Add to Cart"
-            label="Add to Cart"
-            stretch={true}
-            onClick={() =>
-              handleAddToCart(
-                product.id,
-                selectedVariant?.id ?? product.variants[0].id,
-                1,
-              )
-            }
-          />
-          <ToastNotification
-            message={message}
-            isVisible={toastVisible}
-            onClose={() => setToastVisible(false)}
-          />
         </div>
       )}
     </SectionContainer>
