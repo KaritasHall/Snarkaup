@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { ListProductWithContent } from "@/app/hooks/useProducts";
 import { formatPrice } from "@/app/utils/format-price";
-import { useCart } from "@/app/hooks/useCart";
 
 interface ProductCardProps {
   product: ListProductWithContent;

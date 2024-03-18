@@ -20,7 +20,7 @@ export default function SearchPage() {
 
   const currentPage = Number(searchParams.get("page")) || 1;
 
-  const { products } = useProducts({});
+  const { products, productsIsLoading } = useProducts({});
 
   // Checking basic search functionality with the throttled query
   // Currently searching by title only
@@ -37,7 +37,10 @@ export default function SearchPage() {
     <div>
       <SectionContainer>
         <h2 className="pb-24 text-2xl font-bold">Results</h2>
-        <ProductGrid products={currentProducts ?? []} />
+        <ProductGrid
+          products={currentProducts ?? []}
+          isLoading={productsIsLoading}
+        />
       </SectionContainer>
     </div>
   );

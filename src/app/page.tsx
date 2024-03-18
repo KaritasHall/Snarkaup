@@ -4,11 +4,11 @@ import SectionContainer from "./components/section-container";
 import ProductGrid from "./components/product-grid";
 
 export default function Home() {
-  const { products } = useProducts({});
+  const { products, productsIsLoading } = useProducts({});
 
   return (
     <SectionContainer>
-      {products && <ProductGrid products={products} />}
+      <ProductGrid products={products ?? []} isLoading={productsIsLoading} />
     </SectionContainer>
   );
 }

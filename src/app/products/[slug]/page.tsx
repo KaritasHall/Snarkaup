@@ -5,15 +5,15 @@ import Button from "@/app/components/button";
 import { useCart } from "@/app/hooks/useCart";
 import { formatPrice } from "@/app/utils/format-price";
 import { ProductCarousel } from "@/app/components/product-carousel";
-import { ItemCounter } from "@/app/components/item-counter";
 import { useEffect, useState } from "react";
 import { ProductWithContent } from "@/app/hooks/useProducts";
 import { ToastNotification } from "@/app/components/toast-notification";
+import { ProductPageSkeleton } from "@/app/components/skeletons/product-page-skeleton";
 
 export default function ProductPage({ params }: { params: { slug: string } }) {
   const [toastVisible, setToastVisible] = useState(false);
   const [message, setMessage] = useState("");
-  const { product } = useProducts({
+  const { product, productIsLoading } = useProducts({
     id: params.slug,
   });
   const { addToCart } = useCart();
@@ -50,25 +50,60 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
 
   return (
     <SectionContainer>
-      <div className="flex w-full flex-col items-center gap-36 pb-36 lg:flex-row lg:items-start lg:gap-64 lg:pb-0">
-        <div className="flex flex-col gap-8 lg:w-1/2">
-          {image && (
-            <ProductCarousel
-              carouselImages={image?.map((img) => img.listUrl)}
-              title={product.title}
-            />
-          )}
-        </div>
-        <div className="flex flex-col gap-16 lg:w-1/2">
-          <div className="flex flex-col gap-16  text-black07">
-            <h2 className="font-poppins text-h4 leading-10 text-black lg:pb-16 lg:text-h3 lg:leading-normal">
-              {product?.title}
-            </h2>
-            <p className="text-base text-black04">{product?.description}</p>
+      {productIsLoading ? (
+        <ProductPageSkeleton />
+      ) : (
+        <div className="flex w-full flex-col items-center gap-36 pb-36 lg:flex-row lg:items-start lg:gap-64 lg:pb-0">
+          <div className="flex flex-col gap-8 lg:w-1/2">
+            {image && (
+              <ProductCarousel
+                carouselImages={image?.map((img) => img.listUrl)}
+                title={product.title}
+              />
+            )}
+          </div>
+          <div className="flex flex-col gap-16 lg:w-1/2">
+            <div className="flex flex-col gap-16  text-black07">
+              <h2 className="font-poppins text-h4 leading-10 text-black lg:pb-16 lg:text-h3 lg:leading-normal">
+                {product?.title}
+              </h2>
+              <p className="text-base text-black04">{product?.description}</p>
 
-            <h3 className="font-poppins text-h6">
-              {formatPrice(selectedVariant?.price ?? price)}
-            </h3>
+              <h3 className="font-poppins text-h6">
+                {formatPrice(selectedVariant?.price ?? price)}
+              </h3>
+            </div>
+
+            <div className="flex w-fit flex-col gap-8 pb-32">
+              {/* TODO:Should be able to display variant type (color, size etc.) */}
+              <p className="text-base text-black04">Choose variant:</p>
+              <select
+                className="rounded-md bg-inherit px-10 py-8 shadow-md"
+                onChange={(e) => {
+                  const selectedVariant = product?.variants.find(
+                    (variant) => variant.id === Number(e.target.value),
+                  );
+                  if (selectedVariant) {
+                    handleVariantChange(selectedVariant);
+                  }
+                }}
+              >
+                {product?.variants.map((variant) => (
+                  <option key={variant.id} value={variant.id}>
+                    {variant.title}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <Button
+              ariaLabel="Add to Cart"
+              label="Add to Cart"
+              stretch={true}
+              onClick={() =>
+                addToCart(product?.id ?? 0, selectedVariant?.id ?? 0, 1)
+              }
+            />
           </div>
 
           <div className="flex w-fit flex-col gap-8 pb-32">
@@ -111,7 +146,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
             onClose={() => setToastVisible(false)}
           />
         </div>
-      </div>
+      )}
     </SectionContainer>
   );
 }

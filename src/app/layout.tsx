@@ -5,6 +5,7 @@ import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 import { Poppins, Inter } from "next/font/google";
 import { Modal } from "./components/modal";
+import { PageWrapper } from "./components/page-wrapper";
 
 const poppins = Poppins({
   weight: ["400", "700"],
@@ -34,7 +35,7 @@ export default function RootLayout({
       <Providers>
         <body className={`${poppins.variable} ${inter.variable} font-inter`}>
           <Navbar />
-          {children}
+          <PageWrapper>{children}</PageWrapper>
           <Footer />
           <Modal />
         </body>

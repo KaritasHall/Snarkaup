@@ -128,5 +128,8 @@ export function useProducts({ id, category }: UseProductsProps) {
     products: extractProducts.length !== 0 ? extractProducts : products,
     categories,
     productsByCategory,
+    productsIsLoading,
+    productIsLoading,
+    productsByCategoryIsLoading,
   };
 }
