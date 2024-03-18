@@ -1,5 +1,9 @@
 const SectionContainer = ({ children }: { children: React.ReactNode }) => {
-  return <div className="h-full px-fluid-x py-fluid-y">{children}</div>;
+  return (
+    <div className="pt-fluid-top pb-fluid-bottom h-full px-fluid-x">
+      {children}
+    </div>
+  );
 };
 
 export default SectionContainer;

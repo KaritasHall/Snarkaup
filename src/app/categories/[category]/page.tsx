@@ -8,18 +8,22 @@ export default function CategoryPage({
 }: {
   params: { category: string };
 }) {
-  const { productsByCategory, products } = useProducts({
+  const {
+    productsByCategory,
+    products,
+    productsByCategoryIsLoading,
+    productsIsLoading,
+  } = useProducts({
     category: params.category,
   });
 
   return (
     <>
-      {productsByCategory && (
-        <CategorySection
-          products={products || []}
-          category={productsByCategory}
-        />
-      )}
+      <CategorySection
+        products={products || []}
+        category={productsByCategory}
+        isLoading={productsIsLoading || productsByCategoryIsLoading}
+      />
     </>
   );
 }
