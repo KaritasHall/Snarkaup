@@ -11,8 +11,6 @@ interface ProductCardProps {
 const ProductCard = ({ product }: ProductCardProps) => {
   const productPrice = product.lowestPrice && formatPrice(product.lowestPrice);
 
-  const { addToCart } = useCart();
-
   return (
     <div className="grid w-card-w grid-rows-[auto_1fr] gap-12">
       <div className="h-card-h w-full">
