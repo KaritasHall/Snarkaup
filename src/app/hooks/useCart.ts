@@ -23,10 +23,23 @@ export function useCart() {
     variantId: number,
     quantityChange: number,
   ) {
+    console.log(
+      "In addToCart, productId:",
+      productId,
+      "type:",
+      typeof productId,
+    );
+    console.log(
+      "In addToCart, variantId:",
+      variantId,
+      "type:",
+      typeof variantId,
+    );
     setCart((currentCart) => {
       const productIndex = currentCart.findIndex(
         (item) => item.variantId === variantId,
       );
+      console.log("In addToCart, productIndex:", productIndex);
 
       // Product found in the cart, update the quantity
       if (productIndex !== -1) {
@@ -58,6 +71,7 @@ export function useCart() {
         }
         // Find the product in the list to ensure it exists before adding
         const product = products?.find((product) => product.id === productId);
+        console.log("In addToCart, product:", product);
         const productVariant = product?.variants.find(
           (variant) => variant.id === variantId,
         );

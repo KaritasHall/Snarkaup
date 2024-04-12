@@ -25,7 +25,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
           )}
         </Link>
       </div>
-      <div className="flex flex-col gap-4 font-semibold">
+      <div className="flex flex-col gap-4 font-poppins">
         <h2 className="line-clamp-1 text-base leading-6 lg:line-clamp-3">
           {product.title}
         </h2>

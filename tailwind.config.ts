@@ -46,6 +46,7 @@ const config: Config = {
       fontFamily: {
         inter: ["var(--font-inter)"],
         poppins: ["var(--font-poppins)"],
+        raleway: ["var(--font-raleway)"],
       },
 
       spacing: {

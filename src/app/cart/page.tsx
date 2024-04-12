@@ -38,7 +38,7 @@ export default function CartPage() {
     <div className="w-screen">
       <SectionContainer>
         <div className="flex w-full justify-center">
-          <h2 className="font-poppins text-h1">Cart</h2>
+          <h2 className="font-s text-h1">Cart</h2>
         </div>
         <div className="flex flex-col items-center lg:justify-between xl:flex-row">
           <div className="mb-20 w-fit">

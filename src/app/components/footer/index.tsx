@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { InstagramIcon, FacebookIcon, YoutubeIcon } from "../icons";
 import { useHelloModal } from "@/app/hooks/useHelloModal";
+import { Logo } from "../logo";
 
 const Footer = () => {
   const { setIsModalOpen } = useHelloModal();
@@ -10,11 +11,8 @@ const Footer = () => {
     <div className="bg-black07 px-fluid-x py-48 text-sm text-pureWhite lg:text-base">
       <footer className="flex h-fit w-full flex-col items-center gap-40 lg:gap-[57px]">
         <div className="divider flex w-full flex-col gap-40 lg:flex-row lg:justify-between lg:pb-[57px]">
-          <div className="flex flex-col items-center gap-18 lg:flex-row">
-            <Link aria-label="Go to home page" href="/">
-              <p>LOGO</p>
-            </Link>
-            <p>SNARKAUP</p>
+          <div className="flex flex-col items-center lg:flex-row">
+            <Logo />
           </div>
           <div className="flex flex-col items-center gap-[32px] pb-24 lg:flex-row">
             <Link
