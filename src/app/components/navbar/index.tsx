@@ -9,6 +9,7 @@ import { useCart } from "@/app/hooks/useCart";
 import { setBodyScroll } from "@/app/utils/set-body-scroll";
 import { MegaMenu } from "../mega-menu";
 import cx from "classnames";
+import { Logo } from "../logo";
 
 const Navbar = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -67,9 +68,7 @@ const Navbar = () => {
       >
         <div className="flex w-full items-center justify-between">
           <div className="flex w-1/2 gap-18">
-            <Link href="/" aria-label="Link to home page">
-              <h1 className="">Logo</h1>
-            </Link>
+            <Logo />
             <button
               onClick={(e) => {
                 e.stopPropagation();

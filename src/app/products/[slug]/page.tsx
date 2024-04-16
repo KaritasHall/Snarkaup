@@ -35,14 +35,19 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
   const price = product?.variants[0].price ?? 0;
 
   const handleAddToCart = (
-    productId: number | undefined,
+    productId: number | string | undefined,
     variantId: number | undefined,
     quantity: number,
   ) => {
+    console.log("adding:", productId, variantId, quantity);
+    console.log("product id is of type", typeof productId);
     if (!productId || !variantId) {
       return;
     }
-    addToCart(productId, variantId, quantity);
+
+    const castProductId =
+      typeof productId === "string" ? Number(productId) : productId;
+    addToCart(castProductId, variantId, quantity);
     setMessage("Item added to cart");
     setToastVisible(true);
   };
@@ -74,7 +79,6 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
             </div>
 
             <div className="flex w-fit flex-col gap-8 pb-32">
-              {/* TODO:Should be able to display variant type (color, size etc.) */}
               <p className="text-base text-black04">Choose variant:</p>
               <select
                 className="rounded-md bg-inherit px-10 py-8 shadow-md"
