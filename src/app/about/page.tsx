@@ -2,7 +2,7 @@
 
 import SectionContainer from "../components/section-container";
 import { useQuery } from "@apollo/client";
-import { GET_ABOUT_PAGE } from "../dato/about-page-query";
+import { GET_ABOUT_PAGE } from "../dato/queries/about-page-query";
 import { AboutRecord } from "../dato/generated/graphql";
 import { Image } from "react-datocms";
 

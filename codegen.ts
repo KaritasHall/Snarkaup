@@ -12,7 +12,7 @@ const config: CodegenConfig = {
       },
     },
   },
-  documents: "src/app/dato/*.ts",
+  documents: "src/app/dato/queries/*.ts",
   generates: {
     "src/app/dato/generated/": {
       preset: "client",
