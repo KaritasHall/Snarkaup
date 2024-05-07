@@ -22,10 +22,11 @@ const buttonShapeClass = {
 };
 
 const buttonColorClass: Record<Colors, string> = {
-  default: "bg-black07 text-white hover:bg-white hover:text-black07",
+  default:
+    "bg-black07 opacity-100 text-white hover:bg-opacity-20 hover:text-black07",
   white: "bg-white text-black07 hover:bg-black07 hover:text-white",
-  blue: "bg-blue text-white hover:bg-white hover:text-black07",
-  green: "bg-green text-white hover:bg-white hover:text-black07",
+  blue: "bg-blue opacity-100 text-white hover:bg-opacity-70",
+  green: "bg-green text-white hover:bg-inherit hover:text-black07",
   grey: "bg-grey03 text-black07 hover:bg-black07 hover:text-white",
 };
 
@@ -50,8 +51,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         onClick={onClick}
         aria-label={ariaLabel}
-        className={`flex items-center justify-center gap-4 py-12 text-sm outline outline-1 
-        outline-inherit lg:gap-8 lg:px-56 lg:text-base 
+        className={`flex items-center justify-center gap-4 py-12 text-sm lg:gap-8 lg:px-56 lg:text-base 
         ${buttonShapeClass[shape]} 
         ${buttonColorClass[color]}
         ${stretch ? "w-full py-8" : ""}
